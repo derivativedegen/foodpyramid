@@ -10,7 +10,7 @@ import './Stars.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: 'stats' };
+    this.state = { page: 'home' };
     this.changePage = this.changePage.bind(this);
   }
 
