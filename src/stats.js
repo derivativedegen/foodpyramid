@@ -15,11 +15,6 @@ const tokendata =
     id: 1,
     buylink: `https://app.uniswap.org/#/swap?inputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&outputCurrency=0x6b951017a3212edc6b275976bfdd50969f6e1c62`,
     chartlink: `https://beta.dex.vision/?ticker=UniswapV2:FUSDCUSDC-0x6fc30adEdD79fFB4cBB2FDbef1F779bBF3aa8d36&interval=240`
-},{
-    name: 'fETH',
-    id: 2,
-    buylink: `https://app.uniswap.org/#/swap?inputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&outputCurrency=0x6b951017a3212edc6b275976bfdd50969f6e1c62`,
-    chartlink: `https://beta.dex.vision/?ticker=UniswapV2:FUSDCUSDC-0x6fc30adEdD79fFB4cBB2FDbef1F779bBF3aa8d36&interval=240`
 }];
 
 export default class Stats extends Component {
