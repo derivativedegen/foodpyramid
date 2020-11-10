@@ -15,7 +15,11 @@ export default class NavBar extends React.Component {
     }
 
     renderBuy() {
-        console.log(this.props.page);
+        if (this.props.page !== 'stats') {
+            return (
+                <BuyNavButton handleClick={this.handleClick} />
+            )
+        };
     }
 
     render() {
@@ -31,12 +35,12 @@ export default class NavBar extends React.Component {
                     
 
                     <div className="collapse navbar-collapse" id="ftco-nav">
-                    <BuyNavButton handleClick={this.handleClick} />
+                    {this.renderBuy()}
 
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item" key="nav-01"><a href="" className="nav-link"  id="home" onClick={this.handleClick}>Home</a></li>
                         <li className="nav-item" key="nav-02"><a href="" className="nav-link" id="about" onClick={this.handleClick}>About</a></li>
-                        <li className="nav-item" key="nav-03"><a href="" className="nav-link" id="stats" onClick={this.handleClick}>Stats</a></li>
+                        <li className="nav-item" key="nav-03"><a href="" className="nav-link" id="stats" onClick={this.handleClick}>Numbahs</a></li>
                         <li className="nav-item" key="nav-04"><a href="" className="nav-link" id="team" onClick={this.handleClick}>Team</a></li>
                         <li className="nav-item" key="nav-05"><a href="https://medium.com/@FoodPyramid" className="nav-link" target="_blank" rel="noreferrer">Blog</a></li>
                     </ul>

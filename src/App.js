@@ -3,6 +3,7 @@ import NavBar from './navBar';
 import HeaderVideo from './headerVideo';
 import InfoSection from './infoSection';
 import Stats from './stats';
+import Team from './team';
 import './App.css';
 import './Stars.css';
 
