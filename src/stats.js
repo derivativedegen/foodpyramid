@@ -36,7 +36,6 @@ export default class Stats extends Component {
 
     render() {
         const tokenNum = this.state.allTokenData.filter((token) => token.name === this.state.token)[0].id;
-        console.log(this.state.singleTokenData)
 
         return (
             <div className="header-container">

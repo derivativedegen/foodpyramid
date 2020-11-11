@@ -11,7 +11,7 @@ export default class BuyNavButton extends Component {
                 }}>
                 <div className="buyboxnav" id="stats">
                     <b id="stats" onClick={this.props.handleClick}>
-                        Buy FOOD & fUSDC
+                        Join The Pyramid
                     </b>
                 </div>
             </a>

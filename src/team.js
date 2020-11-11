@@ -18,16 +18,18 @@ export default class Team extends Component {
                     </div>
                 </div>
 
-                <div class="row justify-content-center mb-5 pb-5">
-                    {this.state.teamData.map((member) => 
-                        <TeamMember 
-                            name={member.name}
-                            title={member.title}
-                            bio={member.bio}
-                            image={member.image}
-                            twitter={member.twitter}
-                        />
-                    )}
+                <div class="container">
+                    <div class="row justify-content-center mb-5 pb-5">
+                        {this.state.teamData.map((member) => 
+                            <TeamMember 
+                                name={member.name}
+                                title={member.title}
+                                bio={member.bio}
+                                image={member.image}
+                                twitter={member.twitter}
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
         )
