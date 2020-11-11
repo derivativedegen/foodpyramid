@@ -23,11 +23,12 @@ export default class InfoSection extends Component {
                     
 
                     <div className="row">
-                        {this.state.bulletData.map(bulletPoint => 
+                        {this.state.bulletData.map((bulletPoint, i) => 
                             <BulletPoint
                                 heading={bulletPoint.heading}
                                 details={bulletPoint.details}
                                 image={bulletPoint.image}
+                                key={i}
                             />
                         )}
                     </div>

@@ -11,7 +11,6 @@ export default class HeaderVideo extends React.Component {
     handleClick(e) {
         e.preventDefault();
         const page = e.target.id;
-        console.log(page);
         this.props.onClick(page);
     }
 

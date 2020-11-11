@@ -10,7 +10,10 @@ import './Stars.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: 'home' };
+    this.state = { 
+      page: 'home',
+      utcTime: []
+    };
     this.changePage = this.changePage.bind(this);
   }
 
@@ -24,6 +27,17 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    const endpoint = 'http://worldtimeapi.org/api/timezone/Etc/UTC';
+
+    fetch(endpoint)
+        .then((response) => response.json())
+        .then(utcInfo => {
+            const unixtime = utcInfo.unixtime;
+            this.setState({ utcTime: unixtime * 1000 })
+        });
+}
+
   showPage() {
     switch (this.state.page) {
       case 'home':
@@ -31,7 +45,7 @@ class App extends Component {
       case 'about':
         return <InfoSection />
       case 'stats':
-        return <Stats />
+        return <Stats utcTime={this.state.utcTime} />
       case 'team':
         return <Team />
       default:

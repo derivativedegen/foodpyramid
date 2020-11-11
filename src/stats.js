@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TokenButton from './tokenButton';
 import TokenLink from './tokenLink';
 import StatBox from './statBox';
+import Countdown from './react-countdown-timer/Countdown'
 import { tokenData } from './siteData';
 
 export default class Stats extends Component {
@@ -10,32 +11,35 @@ export default class Stats extends Component {
         this.state = {
             allTokenData: tokenData,
             singleTokenData: tokenData[0],
-            token: 'FOOD',
-            id: 0,
+            id: tokenData[0].id,
+            token: tokenData[0].name,
             buylink: tokenData[0].buylink,
-            chartlink: tokenData[0].chartlink
+            chartlink: tokenData[0].chartlink,
         };
         this.changeToken = this.changeToken.bind(this);
     }
 
     changeToken(e) {
         this.setState({ 
-            token: e.target.id
+            id: parseInt(e.target.id)
         });
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevState.token !== this.state.token) {
+        if (prevState.id !== this.state.id) {
+            const newToken = this.state.allTokenData[this.state.id];
             this.setState({
-                buylink: this.state.allTokenData.filter(token => token.name === this.state.token)[0].buylink, 
-                chartlink: this.state.allTokenData.filter(token => token.name === this.state.token)[0].chartlink,
-                singleTokenData: this.state.allTokenData.filter(token => token.name === this.state.token)[0]
+                singleTokenData: newToken,
+                buylink: newToken.buylink, 
+                chartlink: newToken.chartlink,
+                token: newToken.name
             })
         }
     }
 
     render() {
-        const tokenNum = this.state.allTokenData.filter((token) => token.name === this.state.token)[0].id;
+        const remaining = (this.props.utcTime + 3600000);
+        
 
         return (
             <div className="header-container">
@@ -45,17 +49,20 @@ export default class Stats extends Component {
 
                 <div className="container">
                     <div className="row justify-content-center">
-                        {this.state.allTokenData.map(token => 
+                        {this.state.allTokenData.map((token, i) => 
                             <TokenButton 
                                 name={token.name} 
-                                key={token.id}
+                                id={token.id}
+                                key={i}
+                                active={this.state.id} 
                                 handleClick={this.changeToken} 
-                                active={this.state.token} 
                                 buylink={token.buylink}
                                 chartlink={token.chartlink}
                             />
                         )}
                     </div>
+
+                    <Countdown target={Date.now() + 14400000} />
 
                     <hr className="hrwhite" />
                     
@@ -65,12 +72,14 @@ export default class Stats extends Component {
                     </div>
 
                     <div className="row justify-content-center">
-                    {this.state.singleTokenData.statboxes.map((box, i) => 
-                        <StatBox text={box.heading} stat={box.stat} key={i}/>
-                    )}
+                        {this.state.singleTokenData.statboxes.map((box, i) => 
+                            <StatBox text={box.heading} stat={box.stat} key={i}/>
+                        )}
                     </div>
                 </div>
             </div>
         )
     }
 }
+
+// convert UTC time to hours/mins remaining (App component, built in JS method) and then pass that into props of this component and const remaining

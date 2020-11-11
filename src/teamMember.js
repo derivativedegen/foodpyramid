@@ -5,16 +5,16 @@ export default class TeamMember extends Component {
         const imageData = 'url(' + this.props.image + ')';
 
         return(
-            <div class="item text-center">
-                <div class="testimony-wrap p-4 pb-5">
-                    <div class="user-img mb-4" style={{backgroundImage: imageData, border: '1px solid white'}}>
+            <div className="item text-center">
+                <div className="testimony-wrap p-4 pb-5">
+                    <div className="user-img mb-4" style={{backgroundImage: imageData, border: '1px solid white'}}>
                     </div>
-                    <div class="text">
-                        <p class="mb-5">{this.props.bio}</p>
-                        <div class="row justify-content-center">
-                            <div class="testimony-bottom">
+                    <div className="text">
+                        <p className="mb-5">{this.props.bio}</p>
+                        <div className="row justify-content-center">
+                            <div className="testimony-bottom">
                                 <a href={this.props.twitter} target="_blank">
-                                    <p class="name">{this.props.name}</p>
+                                    <p className="name">{this.props.name}</p>
                                 </a>
                                 <span>
                                     {this.props.title}
