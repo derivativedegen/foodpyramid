@@ -35,7 +35,7 @@ export default class NavBar extends React.Component {
                     
 
                     <div className="collapse navbar-collapse" id="ftco-nav">
-                    {this.renderBuy()}
+                    {/*this.renderBuy()*/}
 
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item" key="nav-01"><a href="" className="nav-link"  id="home" onClick={this.handleClick}>Home</a></li>

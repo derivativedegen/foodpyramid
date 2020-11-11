@@ -103,6 +103,13 @@ overflow: visible;
 margin-top: 10%;
 }
 
+.info-container {
+width: 100%;
+justify-content: center;
+overflow: visible;
+margin-top: 5%;
+}
+
 .stars-container {
 /*padding-bottom: 15%;
 padding-top: 150px;*/

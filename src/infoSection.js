@@ -12,7 +12,7 @@ export default class InfoSection extends Component {
 
     render() {
         return(
-            <div className="header-container">
+            <div className="info-container">
                 <div className="container">
                     <div className="row justify-content-center text-center mb-5 pb-5">
                         <div className="col-md-8">

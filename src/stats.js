@@ -41,7 +41,7 @@ export default class Stats extends Component {
         return (
             <div className="header-container">
                 <div className="row d-flex justify-content-center">
-                  <h1><b>Foodture of Finance</b></h1>
+                  <h2><b>Foodture of Finance</b></h2>
                 </div>
 
                 <div className="container">

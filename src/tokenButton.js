@@ -13,11 +13,11 @@ export default class TokenButton extends Component {
         return(
             <div className={this.toggleClass()}>
                 <a href="#">
-                    <h3>
+                    <h4>
                         <b onClick={this.props.handleClick} id={this.props.name}>
                             {this.props.name}
                         </b>
-                    </h3>
+                    </h4>
                 </a>
             </div>
         )

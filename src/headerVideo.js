@@ -1,9 +1,23 @@
 import React from 'react';
+import BuyNavButton from './buyNavButton';
+
 
 export default class HeaderVideo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        const page = e.target.id;
+        console.log(page);
+        this.props.onClick(page);
+    }
+
     render() {
         return (
-            <div className="container header-container">
+            <div className="container header-container justify-content-center">
                 <div className="row d-flex justify-content-center shadow-lg p-3 mb-5 bg-black rounded">
                     <div className="embed-responsive embed-responsive-16by9">
                         <iframe 
@@ -14,6 +28,10 @@ export default class HeaderVideo extends React.Component {
                         allowFullScreen>
                         </iframe>
                     </div>
+                </div>
+
+                <div className="row justify-content-center">
+                    <BuyNavButton handleClick={this.handleClick} />
                 </div>
             </div>
         )
