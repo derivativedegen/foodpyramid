@@ -4,6 +4,7 @@ import HeaderVideo from './headerVideo';
 import InfoSection from './infoSection';
 import Stats from './stats';
 import Team from './team';
+import Footer from './footer';
 import './App.css';
 import './Stars.css';
 
@@ -26,6 +27,7 @@ class App extends Component {
         {this.state.page === 'home' ? <HeaderVideo /> : null}
         {this.state.page === 'about' ? <InfoSection /> : null}
         {this.state.page === 'stats' ? <Stats /> : null}
+        {this.state.page === 'team' ? <Team /> : null}
       </div>
     )
   }
