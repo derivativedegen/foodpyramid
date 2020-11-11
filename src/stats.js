@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TokenButton from './tokenButton';
 import TokenLink from './tokenLink';
 import StatBox from './statBox';
-import Countdown from './react-countdown-timer/Countdown'
+import Countdown from './Countdown'
 import { tokenData } from './siteData';
 
 export default class Stats extends Component {

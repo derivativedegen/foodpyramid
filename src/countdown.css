@@ -1,0 +1,110 @@
+@keyframes rotateInf {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes moveLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100vw);
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes moveIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-5em);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes scaleIn {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.75);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+body {
+  font-family: inherit;
+}
+
+.countdown {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.flex--space-evenly {
+  justify-content: space-evenly;
+}
+.flex--space-center {
+  justify-content: center;
+}
+.flex--space-around {
+  justify-content: space-around;
+}
+
+.span__title {
+  text-transform: uppercase;
+}
+.span--block {
+  display: block;
+}
+
+.text--center {
+  text-align: center;
+}
+.text--size-medium {
+  font-size: 1.5rem;
+}
+.text--size-large {
+  font-size: 3rem;
+}
+
+.animation--moveLeft {
+  animation: moveLeft 2s;
+}
+.animation--moveIn {
+  animation: moveIn 2.5s;
+}
+.animation--fadeIn {
+  animation: fadeIn 1s;
+}
+.animation--scaleIn {
+  animation: scaleIn 1s;
+}
+.animation--rotateInf {
+  animation: rotateInf 1s infinite linear running;
+}
