@@ -68,7 +68,7 @@ export const teamData = [
     {
         name: 'Quantadelic',
         title: `Founder / Benevolent Dictator`,
-        bio: `Kind of a Dick. Chief \ /rchitect.`,
+        bio: `Benevolent & Righteous Leader of the Food Pyramid. Also into decentralization & stuff.`,
         image: 'images/bio_pics/quantadelic.jpg',
         twitter: 'https://twitter.com/quantadelic'
     },
