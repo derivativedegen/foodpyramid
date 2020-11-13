@@ -10,7 +10,6 @@ import {
 } from "./functions/calculations";
 
 import {
-  Days,
   Hours,
   Minutes,
   Seconds

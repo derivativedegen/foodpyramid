@@ -25,6 +25,8 @@ class App extends Component {
   detectMobile() {
     if (window.innerWidth <= 1000) {
         this.setState({ mobile: true })
+    } else {
+        this.setState({ mobile: false })
     }
   }
 
@@ -68,7 +70,7 @@ class App extends Component {
       case 'team':
         return <Team />
       default:
-        return <HeaderVideo />
+        return <HeaderVideo onClick={this.changePage} page={this.state.page} mobile={this.state.mobile} />
     }
   }
 
@@ -77,8 +79,7 @@ class App extends Component {
       <div className="App">
         <NavBar onClick={this.changePage} page={this.state.page} />
         
-        {this.showPage()}
-        
+        {this.showPage()}        
       </div>
     )
   }

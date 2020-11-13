@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { teamData } from './siteData';
+import { headings } from './siteData';
 import TeamMember from './teamMember';
 
 export default class Team extends Component {
@@ -14,7 +15,7 @@ export default class Team extends Component {
             <div className="header-container justify-content-center">
                 <div className="row justify-content-center mb-5 pb-5">
                     <div className="col-md-7 text-center heading-section">
-                        <h3><b>Meet the legendary team that's ending world hunger with $FOOD.</b></h3>
+                        <h3><b>{headings.team}</b></h3>
                     </div>
                 </div>
 

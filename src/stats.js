@@ -4,6 +4,7 @@ import TokenLink from './tokenLink';
 import StatBox from './statBox';
 import Countdown from './Countdown'
 import { tokenData } from './siteData';
+import { headings } from './siteData';
 
 export default class Stats extends Component {
     constructor(props) {
@@ -42,7 +43,7 @@ export default class Stats extends Component {
         return (
             <div className="header-container">
                 <div className="row d-flex justify-content-center">
-                  <h2><b>Foodture of Finance</b></h2>
+                  <h2><b>{headings.stats}</b></h2>
                 </div>
 
                 <div className="container">
@@ -69,7 +70,7 @@ export default class Stats extends Component {
                         <hr className="hrwhite" />
 
                         <div className="row justify-content-center">
-                            <h4>Next fToken Rebase</h4>
+                            <h4>{headings.nextRebase}</h4>
                         </div>
                         <Countdown target={this.state.nextRebase} />
 

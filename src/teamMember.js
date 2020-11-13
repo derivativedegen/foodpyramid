@@ -13,7 +13,7 @@ export default class TeamMember extends Component {
                         <p className="mb-5">{this.props.bio}</p>
                         <div className="row justify-content-center">
                             <div className="testimony-bottom">
-                                <a href={this.props.twitter} target="_blank">
+                                <a href={this.props.twitter} target="_blank" rel="noreferrer">
                                     <p className="name">{this.props.name}</p>
                                 </a>
                                 <span>

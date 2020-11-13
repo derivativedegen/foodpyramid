@@ -123,6 +123,13 @@ export const teamData = [
     },
 ]
 
+export const headings = {
+    siteTitle: 'FOOD PYRAMID',
+    about: `Crypto Twitter's very own fully upfront, completely honest Pyramid Scheme™`,
+    stats: 'Foodture of Finance',
+    nextRebase: 'Next fToken Rebase',
+    team: `Meet the legendary team that's ending world hunger with $FOOD.`,
+}
 /*
 {
         name: 'fETH',
