@@ -5,7 +5,7 @@ export const aboutData = [
         image: "images/bullet-1.png"
     },
     {
-        heading: "Rug Pulls that Pay You",
+        heading: "Rug Pulls that Actually Pay You",
         details:`Instead of constantly worrying about "wen rug" just stake your LP tokens in our Rug Pull Profit Sharing Initiative™ and earn every 4 hours.`,
         image: "images/bullet-2.png"
     },
