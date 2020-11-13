@@ -26,7 +26,7 @@ class App extends Component {
     const currentUTCHour = now.getUTCHours();
     const rebaseHours = [4, 8, 12, 16, 20, 24];
     const nextRebaseHour = rebaseHours.filter(e => { return currentUTCHour < e })[0];
-    const nextRebase = new Date();
+    const nextRebase = now;
       nextRebase.setUTCHours(nextRebaseHour);
       nextRebase.setUTCMinutes(0);
       nextRebase.setUTCSeconds(0);

@@ -15,6 +15,7 @@ export default class Stats extends Component {
             token: tokenData[0].name,
             buylink: tokenData[0].buylink,
             chartlink: tokenData[0].chartlink,
+            nextRebase: this.props.nextRebase
         };
         this.changeToken = this.changeToken.bind(this);
     }
@@ -59,25 +60,32 @@ export default class Stats extends Component {
                         )}
                     </div>
 
-                    <hr className="hrwhite" />
-
-                    <div className="row justify-content-center">
-                        Next Rebase:
-                    </div>
-                    <Countdown target={this.props.nextRebase} />
-
-                    <hr className="hrwhite" />
-                    
                     <div className="row justify-content-center">
                         <TokenLink link={this.state.buylink} text={"Buy " + this.state.token} />
                         <TokenLink link={this.state.chartlink} text={this.state.token + " Chart"} />
                     </div>
+
+                    {
+                        this.state.id !== 0 ? (
+                            <div>
+                                <hr className="hrwhite" />
+                                
+                                <div className="row justify-content-center">
+                                    <h4>Next {this.state.token} Rebase</h4>
+                                </div>
+                                <Countdown target={this.props.nextRebase} />
+                                
+                                <hr className="hrwhite" />
+                            </div>
+                        ) : null
+                    }
 
                     <div className="row justify-content-center">
                         {this.state.singleTokenData.statboxes.map((box, i) => 
                             <StatBox text={box.heading} stat={box.stat} key={i}/>
                         )}
                     </div>
+                    
                 </div>
             </div>
         )
