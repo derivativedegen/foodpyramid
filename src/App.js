@@ -13,12 +13,19 @@ class App extends Component {
     this.state = { 
       page: 'home',
       nextRebase: 0,
+      mobile: false,
     };
     this.changePage = this.changePage.bind(this);
   }
 
   changePage(newPage) {
     this.setState({ page: newPage });
+  }
+
+  detectMobile() {
+    if (window.innerWidth <= 1000) {
+        this.setState({ mobile: true })
+    }
   }
 
   getRebase() {
@@ -40,18 +47,20 @@ class App extends Component {
     if (prevState.page !== this.state.page) {
         this.changePage(this.state.page);
         this.getRebase();
+        this.detectMobile();
     }
   }
 
   componentDidMount() {
     this.getRebase();
+    this.detectMobile();
   }
 
 
   showPage() {
     switch (this.state.page) {
       case 'home':
-        return <HeaderVideo onClick={this.changePage} page={this.state.page} />
+        return <HeaderVideo onClick={this.changePage} page={this.state.page} mobile={this.state.mobile} />
       case 'about':
         return <InfoSection />
       case 'stats':

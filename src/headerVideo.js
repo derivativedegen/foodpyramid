@@ -30,15 +30,22 @@ export default class HeaderVideo extends React.Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <BuyNavButton handleClick={this.handleClick} pageName={'stats'} text="Buy" />
-                    <BuyNavButton handleClick={this.handleClick} pageName={'about'} text="About"/>
-                    <BuyNavButton handleClick={this.handleClick} pageName={'team'} text="Team"/>
-                    <a href="https://foodpyramid.medium.com/" target="_blank">
-                        <button className="buyboxnav" style={{color: '#FFFFFF', fontSize: 20, fontWeight: 'bold'}}>
-                            Blog
-                        </button>
-                    </a>
+                    <BuyNavButton handleClick={this.handleClick} pageName={'stats'} text="Join the Pyramid" />
                 </div>
+
+                    {this.props.mobile ? (
+                        <div className="row justify-content-center">
+                            <BuyNavButton handleClick={this.handleClick} pageName={'about'} text="About"/>
+                            <BuyNavButton handleClick={this.handleClick} pageName={'team'} text="Team"/>
+                            <a href="https://foodpyramid.medium.com/" target="_blank">
+                                <button className="buyboxnav" style={{color: '#FFFFFF', fontSize: 20, fontWeight: 'bold'}}>
+                                    Blog
+                                </button>
+                            </a>
+                        </div>
+                        ) : null
+                    }
+                    
             </div>
         )
     }
