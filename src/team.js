@@ -18,7 +18,7 @@ export default class Team extends Component {
                     </div>
                 </div>
 
-                <div className="container">
+                <div className="container-team">
                     <div className="row justify-content-center mb-5 pb-5">
                         {this.state.teamData.map((member, i) => 
                             <TeamMember 
