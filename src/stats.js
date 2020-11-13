@@ -73,7 +73,7 @@ export default class Stats extends Component {
                                 <div className="row justify-content-center">
                                     <h4>Next {this.state.token} Rebase</h4>
                                 </div>
-                                <Countdown target={this.props.nextRebase} />
+                                <Countdown target={this.state.nextRebase} />
                                 
                                 <hr className="hrwhite" />
                             </div>

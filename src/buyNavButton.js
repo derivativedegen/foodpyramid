@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 export default class BuyNavButton extends Component {
     render() {
         return(
-            <a href="" id="stats" onClick={this.props.handleClick} 
+            <a href="" id={this.props.pageName} onClick={this.props.handleClick} 
                 style={{
                     color: '#FFFFFF', 
                     fontSize: 20, 
                     fontWeight: 'bold',
                 }}>
-                <div className="buyboxnav" id="stats">
-                    <b id="stats" onClick={this.props.handleClick}>
-                        Join The Pyramid
+                <div className="buyboxnav" id={this.props.pageName}>
+                    <b id={this.props.pageName} onClick={this.props.handleClick}>
+                        {this.props.text}
                     </b>
                 </div>
             </a>

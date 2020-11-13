@@ -39,6 +39,7 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.page !== this.state.page) {
         this.changePage(this.state.page);
+        this.getRebase();
     }
   }
 

@@ -18,7 +18,7 @@ export const aboutData = [
         heading: "Staking Rewards...not in Shitcoins.",
         details: "Stablecoins, ETH, BTC, DeFi Blue Chips... unlike other yield farming food tokens, staking rewards have long-term value.",
         image: "images/bullet-4.png"
-    }
+    },
 ]
 
 export const tokenData = [
@@ -54,14 +54,14 @@ export const tokenData = [
             }, 
             {
                 heading: 'fUSDC Rebase',
-                stat: '4H Candle Close'
+                stat: 'UTC 4H Close'
             }, 
             {
                 heading: 'fUSDC LP APY',
                 stat: '16,209%'   
             }
         ]
-    }
+    },
 ];
 
 export const teamData = [
@@ -120,7 +120,7 @@ export const teamData = [
         bio: 'I am here for two reasons: to burn shit down and bang your mom, and i’m all out of lighter fluid.',
         image: 'images/bio_pics/elmo.jpg',
         twitter: 'https://twitter.com/jrob1564'
-    }
+    },
 ]
 
 /*
