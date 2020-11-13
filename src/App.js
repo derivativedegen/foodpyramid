@@ -12,13 +12,28 @@ class App extends Component {
     super(props);
     this.state = { 
       page: 'home',
-      utcTime: []
+      nextRebase: 0,
     };
     this.changePage = this.changePage.bind(this);
   }
 
   changePage(newPage) {
     this.setState({ page: newPage });
+  }
+
+  getRebase() {
+    const now = new Date();
+    const currentUTCHour = now.getUTCHours();
+    const rebaseHours = [4, 8, 12, 16, 20, 24];
+    const nextRebaseHour = rebaseHours.filter(e => { return currentUTCHour < e })[0];
+    const nextRebase = new Date();
+      nextRebase.setUTCHours(nextRebaseHour);
+      nextRebase.setUTCMinutes(0);
+      nextRebase.setUTCSeconds(0);
+      nextRebase.setUTCMilliseconds(0);
+    this.setState({
+      nextRebase: nextRebase
+    })
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -28,15 +43,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const endpoint = 'http://worldtimeapi.org/api/timezone/Etc/UTC';
+    this.getRebase();
+  }
 
-    fetch(endpoint)
-        .then((response) => response.json())
-        .then(utcInfo => {
-            const unixtime = utcInfo.unixtime;
-            this.setState({ utcTime: unixtime * 1000 })
-        });
-}
 
   showPage() {
     switch (this.state.page) {
@@ -45,7 +54,7 @@ class App extends Component {
       case 'about':
         return <InfoSection />
       case 'stats':
-        return <Stats utcTime={this.state.utcTime} />
+        return <Stats nextRebase={this.state.nextRebase} />
       case 'team':
         return <Team />
       default:

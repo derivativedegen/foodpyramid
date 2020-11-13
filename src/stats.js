@@ -38,9 +38,6 @@ export default class Stats extends Component {
     }
 
     render() {
-        const remaining = (this.props.utcTime + 3600000);
-        
-
         return (
             <div className="header-container">
                 <div className="row d-flex justify-content-center">
@@ -62,7 +59,12 @@ export default class Stats extends Component {
                         )}
                     </div>
 
-                    <Countdown target={Date.now() + 14400000} />
+                    <hr className="hrwhite" />
+
+                    <div className="row justify-content-center">
+                        Next Rebase:
+                    </div>
+                    <Countdown target={this.props.nextRebase} />
 
                     <hr className="hrwhite" />
                     
@@ -81,5 +83,3 @@ export default class Stats extends Component {
         )
     }
 }
-
-// convert UTC time to hours/mins remaining (App component, built in JS method) and then pass that into props of this component and const remaining
