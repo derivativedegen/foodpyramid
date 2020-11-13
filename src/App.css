@@ -8209,11 +8209,13 @@ textarea.form-control {
 
 .ftco-footer-social li {
   list-style: none;
-  margin: 0 10px 0 0;
+  margin: 0 15px 0 15px;
   display: inline-block; }
   .ftco-footer-social li a {
     height: 50px;
     width: 50px;
+    margin-top: 50px;
+
     display: block;
     float: left;
     background: rgba(255, 255, 255, 0.05);

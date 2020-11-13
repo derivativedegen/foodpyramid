@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import BulletPoint from './bulletPoint';
 import { aboutData } from './siteData';
 import { headings } from './siteData';
+import SocialButtons from './socialButtons';
+
 
 export default class InfoSection extends Component {
     constructor(props) {
@@ -34,6 +36,8 @@ export default class InfoSection extends Component {
                         )}
                     </div>
                 </div>
+
+                <SocialButtons/>
             </div>
         )
     }

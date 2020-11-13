@@ -5,6 +5,8 @@ import StatBox from './statBox';
 import Countdown from './Countdown'
 import { tokenData } from './siteData';
 import { headings } from './siteData';
+import SocialButtons from './socialButtons';
+
 
 export default class Stats extends Component {
     constructor(props) {
@@ -84,6 +86,8 @@ export default class Stats extends Component {
                     </div>
                     
                 </div>
+
+                <SocialButtons />
             </div>
         )
     }

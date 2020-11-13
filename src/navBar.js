@@ -1,7 +1,6 @@
 import React from 'react';
 import TitleLogo from './titleLogo';
 import BuyNavButton from './buyNavButton';
-import SocialButtons from './socialButtons';
 
 export default class NavBar extends React.Component {
     constructor(props) {
@@ -33,8 +32,6 @@ export default class NavBar extends React.Component {
                     {/*<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="oi oi-menu"></span> Menu
                     </button>*/}
-
-                    <SocialButtons />
 
                     <div className="collapse navbar-collapse" id="ftco-nav">
                     {/*this.renderBuy()*/}

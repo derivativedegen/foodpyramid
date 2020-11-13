@@ -1,6 +1,6 @@
 import React from 'react';
 import BuyNavButton from './buyNavButton';
-
+import SocialButtons from './socialButtons';
 
 export default class HeaderVideo extends React.Component {
     constructor(props) {
@@ -43,6 +43,9 @@ export default class HeaderVideo extends React.Component {
                     ) : null
                 }
                 
+                <div className="row justify-content-center">
+                    <SocialButtons />
+                </div>
             </div>
         )
     }
