@@ -65,20 +65,16 @@ export default class Stats extends Component {
                         <TokenLink link={this.state.chartlink} text={this.state.token + " Chart"} />
                     </div>
 
-                    {
-                        this.state.id !== 0 ? (
-                            <div>
-                                <hr className="hrwhite" />
-                                
-                                <div className="row justify-content-center">
-                                    <h4>Next {this.state.token} Rebase</h4>
-                                </div>
-                                <Countdown target={this.state.nextRebase} />
-                                
-                                <hr className="hrwhite" />
-                            </div>
-                        ) : null
-                    }
+                    <div id="countdown">
+                        <hr className="hrwhite" />
+
+                        <div className="row justify-content-center">
+                            <h4>Next fToken Rebase</h4>
+                        </div>
+                        <Countdown target={this.state.nextRebase} />
+
+                        <hr className="hrwhite" />
+                    </div>
 
                     <div className="row justify-content-center">
                         {this.state.singleTokenData.statboxes.map((box, i) => 
@@ -91,3 +87,21 @@ export default class Stats extends Component {
         )
     }
 }
+
+/*
+If you want to toggle countdown based on FOOD/fToken selection add this logic:
+{
+    this.state.id !== 0 ? (
+        <div>
+            <hr className="hrwhite" />
+            
+            <div className="row justify-content-center">
+                <h4>Next {this.state.token} Rebase</h4>
+            </div>
+            <Countdown target={this.state.nextRebase} />
+            
+            <hr className="hrwhite" />
+        </div>
+    ) : null
+}
+*/
