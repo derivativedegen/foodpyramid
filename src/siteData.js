@@ -140,7 +140,7 @@ export const tokenData = [
         statboxes: [
             {
                 heading: 'fUSDC Peg',
-                stat: '$4.84'
+                stat: '$5.44'
             }, 
             {
                 heading: 'fUSDC Rebase',
