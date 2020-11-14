@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { teamData } from './siteData';
-import { headings } from './siteData';
+import { teamData, headings } from './siteData';
 import TeamMember from './teamMember';
 import SocialButtons from './socialButtons';
 

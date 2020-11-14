@@ -1,6 +1,7 @@
 import React from 'react';
 import BuyNavButton from './buyNavButton';
 import SocialButtons from './socialButtons';
+import { headings, youtubeVideos } from './siteData';
 
 export default class HeaderVideo extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ export default class HeaderVideo extends React.Component {
                         <iframe 
                             title="Food Pyramid Trailer"
                             className="embed-responsive-item header-vid"
-                            src="https://www.youtube.com/embed/PfhIERTpTh4" 
+                            src={youtubeVideos.main} 
                             frameBorder="0" 
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                             allowFullScreen>
@@ -31,14 +32,14 @@ export default class HeaderVideo extends React.Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <BuyNavButton handleClick={this.handleClick} pageName={'stats'} text="Enter the Pyramid" />
+                    <BuyNavButton handleClick={this.handleClick} pageName={'stats'} text={headings.statsButton} />
                 </div>
 
                 {this.props.mobile ? (
                     <div className="row justify-content-center">
-                        <BuyNavButton handleClick={this.handleClick} pageName={'about'} text="About"/>
-                        <BuyNavButton handleClick={this.handleClick} pageName={'team'} text="Team"/>
-                        <BuyNavButton handleClick={this.handleClick} pageName={'blog'} text="Blog"/>
+                        <BuyNavButton handleClick={this.handleClick} pageName={'about'} text={headings.aboutButton} />
+                        <BuyNavButton handleClick={this.handleClick} pageName={'team'} text={headings.teamButton} />
+                        <BuyNavButton handleClick={this.handleClick} pageName={'blog'} text={headings.blogButton} />
                     </div>
                     ) : null
                 }

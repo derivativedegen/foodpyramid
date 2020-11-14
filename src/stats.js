@@ -3,8 +3,7 @@ import TokenButton from './tokenButton';
 import TokenLink from './tokenLink';
 import StatBox from './statBox';
 import Countdown from './Countdown'
-import { tokenData } from './siteData';
-import { headings } from './siteData';
+import { tokenData, headings } from './siteData';
 import SocialButtons from './socialButtons';
 
 
@@ -64,8 +63,8 @@ export default class Stats extends Component {
                     </div>
 
                     <div className="row justify-content-center">
-                        <TokenLink link={this.state.buylink} text={"Buy " + this.state.token} />
-                        <TokenLink link={this.state.chartlink} text={this.state.token + " Chart"} />
+                        <TokenLink link={this.state.buylink} text={headings.buy + " " + this.state.token} />
+                        <TokenLink link={this.state.chartlink} text={this.state.token + " " + headings.chart} />
                     </div>
 
                     <div id="countdown">

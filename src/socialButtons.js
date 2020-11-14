@@ -14,7 +14,7 @@ export default class SocialButtons extends Component {
                     </ul>
                 </div>
 
-                <div className="row justify-content-center">
+                <div className="row justify-content-center gibmoney">
                     <a href="https://gib.money" target="_blank" rel="noreferrer">gib.money</a>
                 </div>
             </div>

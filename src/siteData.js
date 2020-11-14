@@ -129,46 +129,19 @@ export const headings = {
     stats: 'Foodture of Finance',
     nextRebase: 'Next fToken Rebase',
     team: `Meet the legendary team that's ending world hunger with $FOOD.`,
+    days: 'Days',
+    hours: 'Hours',
+    minutes: 'Minutes',
+    seconds: 'Seconds',
+    buy: 'Buy',
+    chart: 'Chart',
+    statsButton: 'Enter the Pyramid',
+    aboutButton: 'About',
+    teamButton: 'Team',
+    blogButton: 'Learn',
 }
-/*
-{
-        name: 'fETH',
-        id: 2,
-        buylink: `https://app.uniswap.org/#/swap?inputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&outputCurrency=0x6b951017a3212edc6b275976bfdd50969f6e1c62`,
-        chartlink: `https://beta.dex.vision/?ticker=UniswapV2:FUSDCUSDC-0x6fc30adEdD79fFB4cBB2FDbef1F779bBF3aa8d36&interval=240`,
-        statboxes: [
-            {
-                heading: 'fETH Peg',
-                stat: '$4.29'
-            }, 
-            {
-                heading: 'fETH Rebase',
-                stat: '4H Candle Close'
-            }, 
-            {
-                heading: 'fETH LP APY',
-                stat: '16,209%'   
-            }
-        ]
-    },
-    {
-        name: 'fBTC',
-        id: 3,
-        buylink: `https://app.uniswap.org/#/swap?inputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&outputCurrency=0x6b951017a3212edc6b275976bfdd50969f6e1c62`,
-        chartlink: `https://beta.dex.vision/?ticker=UniswapV2:FUSDCUSDC-0x6fc30adEdD79fFB4cBB2FDbef1F779bBF3aa8d36&interval=240`,
-        statboxes: [
-            {
-                heading: 'fBTC Peg',
-                stat: '$4.29'
-            }, 
-            {
-                heading: 'fBTC Rebase',
-                stat: '4H Candle Close'
-            }, 
-            {
-                heading: 'fBTC LP APY',
-                stat: '16,209%'   
-            }
-        ]
-    }
-*/
+
+export const youtubeVideos = {
+    main: 'https://www.youtube.com/embed/PfhIERTpTh4',
+}
+

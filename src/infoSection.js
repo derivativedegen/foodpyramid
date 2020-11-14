@@ -37,7 +37,7 @@ export default class InfoSection extends Component {
                     </div>
                 </div>
 
-                <SocialButtons/>
+                <SocialButtons />
             </div>
         )
     }
