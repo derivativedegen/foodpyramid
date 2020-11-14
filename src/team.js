@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { teamData, headings } from './siteData';
 import TeamMember from './teamMember';
+import BackButton from './backButton';
 import SocialButtons from './socialButtons';
 
 
@@ -34,6 +35,13 @@ export default class Team extends Component {
                         )}
                     </div>
                 </div>
+
+                {this.props.mobile ? (
+                        <div class="row justify-content-center">
+                            <BackButton text="<" handleClick={this.props.onClick} />
+                        </div>
+                    ) : null
+                }
 
                 <SocialButtons />
             </div>

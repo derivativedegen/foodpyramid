@@ -97,11 +97,25 @@ html {
   height: 50px;
   width: 300px;
   border-radius: 20px;
-  background-color: rgba(0,0,0,0.9);
-  border: 1px solid #fff;
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(146, 146, 146, 0.2);
   text-align: center;
   padding: 10px;
   margin: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.backbutton, .backbutton:hover {
+  height: 50px;
+  width: 200px;
+  border-radius: 20px;
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(146, 146, 146, 0.2);
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  margin-top: 20px;
   outline: none;
   cursor: pointer;
 }

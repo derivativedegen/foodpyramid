@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BulletPoint from './bulletPoint';
+import BackButton from './backButton';
 import { aboutData, headings } from './siteData';
 import SocialButtons from './socialButtons';
 
@@ -35,6 +36,14 @@ export default class InfoSection extends Component {
                         )}
                     </div>
                 </div>
+
+                {this.props.mobile ? (
+                        <div class="row justify-content-center">
+                            <BackButton text="<" handleClick={this.props.onClick} />
+                        </div>
+                    ) : null
+                }
+                
 
                 <SocialButtons />
             </div>

@@ -5,6 +5,7 @@ import StatBox from './statBox';
 import Countdown from './Countdown'
 import { tokenData, headings } from './siteData';
 import SocialButtons from './socialButtons';
+import BackButton from './backButton';
 
 
 export default class Stats extends Component {
@@ -85,6 +86,13 @@ export default class Stats extends Component {
                     </div>
                     
                 </div>
+
+                {this.props.mobile ? (
+                        <div class="row justify-content-center">
+                            <BackButton text="<" handleClick={this.props.onClick} />
+                        </div>
+                    ) : null
+                }
 
                 <SocialButtons />
             </div>

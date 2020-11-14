@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class BuyNavButton extends Component {
+export default class BackButton extends Component {
     render() {
         return(
-            <button className="buyboxnav shadow-lg">
-                <h4 style={{color: '#FFFFFF', fontSize: 20, fontWeight: 'bold',}} 
+            <button className="backbutton shadow-lg">
+                <h4 style={{color: '#FFFFFF', fontSize: 20,}} 
                     id={this.props.pageName} 
                     onClick={this.props.handleClick}
                 >

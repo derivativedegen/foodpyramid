@@ -61,16 +61,14 @@ class App extends Component {
 
   showPage() {
     switch (this.state.page) {
-      case 'home':
-        return <HeaderVideo onClick={this.changePage} page={this.state.page} mobile={this.state.mobile} />
       case 'about':
-        return <InfoSection />
+        return <InfoSection onClick={this.changePage} mobile={this.state.mobile} />
       case 'stats':
-        return <Stats nextRebase={this.state.nextRebase} />
+        return <Stats onClick={this.changePage} mobile={this.state.mobile} nextRebase={this.state.nextRebase} />
       case 'team':
-        return <Team />
+        return <Team onClick={this.changePage} mobile={this.state.mobile} />
       default:
-        return <HeaderVideo onClick={this.changePage} page={this.state.page} mobile={this.state.mobile} />
+        return <HeaderVideo onClick={this.changePage} mobile={this.state.mobile} page={this.state.page} />
     }
   }
 
