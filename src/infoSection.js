@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import BulletPoint from './bulletPoint';
-import { aboutData } from './siteData';
-import { headings } from './siteData';
+import { aboutData, headings } from './siteData';
 import SocialButtons from './socialButtons';
 
 

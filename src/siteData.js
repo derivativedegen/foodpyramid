@@ -141,7 +141,15 @@ export const headings = {
     blogButton: 'Learn',
 }
 
-export const youtubeVideos = {
-    main: 'https://www.youtube.com/embed/PfhIERTpTh4',
+export const nav = {
+    home: 'Home',
+    about: 'About',
+    stats: 'Numbahs',
+    team: 'Team',
+    blog: 'Learn',
 }
 
+export const siteLinks = {
+    youtubeHeader: 'https://www.youtube.com/embed/PfhIERTpTh4',
+    blog: 'https://foodpyramid.medium.com/',
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import BuyNavButton from './buyNavButton';
 import SocialButtons from './socialButtons';
-import { headings, youtubeVideos } from './siteData';
+import { headings, siteLinks } from './siteData';
 
 export default class HeaderVideo extends React.Component {
     constructor(props) {
@@ -11,8 +11,9 @@ export default class HeaderVideo extends React.Component {
 
     handleClick(e) {
         e.preventDefault();
+        const blogLink = siteLinks.blog
         const page = e.target.id;
-        (page === 'blog' ? window.open('https://foodpyramid.medium.com/') : this.props.onClick(page));
+        page === 'blog' ? window.open(blogLink) : this.props.onClick(page);
     }
 
     render() {
@@ -23,7 +24,7 @@ export default class HeaderVideo extends React.Component {
                         <iframe 
                             title="Food Pyramid Trailer"
                             className="embed-responsive-item header-vid"
-                            src={youtubeVideos.main} 
+                            src={siteLinks.youtubeHeader} 
                             frameBorder="0" 
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                             allowFullScreen>
