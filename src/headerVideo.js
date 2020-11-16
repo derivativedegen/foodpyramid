@@ -2,6 +2,11 @@ import React from 'react';
 import BuyNavButton from './buyNavButton';
 import SocialButtons from './socialButtons';
 import { headings, siteLinks } from './siteData';
+import Web3 from 'web3';
+
+
+
+
 
 export default class HeaderVideo extends React.Component {
     constructor(props) {
@@ -32,6 +37,7 @@ export default class HeaderVideo extends React.Component {
                     </div>
                 </div>
 
+                
                 <div className="row justify-content-center">
                     <BuyNavButton handleClick={this.handleClick} pageName={'stats'} text={headings.statsButton} />
                 </div>

@@ -106,50 +106,9 @@ export const nav = {
     blog: 'Learn',
 }
 
+export const navLinks = ['home', 'about', 'stats', 'team']
+
 export const siteLinks = {
     youtubeHeader: 'https://www.youtube.com/embed/PfhIERTpTh4',
     blog: 'https://foodpyramid.medium.com/',
 }
-
-export const tokenData = [
-    {
-        name: 'FOOD',
-        id: 0,
-        buylink: `https://uniswap.exchange/swap?inputCurrency=ETH&outputCurrency=0xf3348f43503d35cad421864d941cd89bc3a0b797`,
-        chartlink: `https://dex.vision/?ticker=UniswapV2:FOODUSD-0x69CfC0b5aF7231b316de8681F81a205338e94973&interval=60`,
-        statboxes: [
-            {
-                heading: 'FOOD Supply',
-                stat: '100,000'
-            }, 
-            {
-                heading: 'FOOD Circulating',
-                stat: '18,750'
-            }, 
-            {
-                heading: 'FOOD APY',
-                stat: '74%'   
-            }
-        ]
-    },
-    {
-        name: 'fUSDC',
-        id: 1,
-        buylink: `https://app.uniswap.org/#/swap?inputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&outputCurrency=0x6b951017a3212edc6b275976bfdd50969f6e1c62`,
-        chartlink: `https://beta.dex.vision/?ticker=UniswapV2:FUSDCUSDC-0x6fc30adEdD79fFB4cBB2FDbef1F779bBF3aa8d36&interval=240`,
-        statboxes: [
-            {
-                heading: 'fUSDC Peg',
-                stat: '$5.44'
-            }, 
-            {
-                heading: 'fUSDC Rebase',
-                stat: 'UTC 4H Close'
-            }, 
-            {
-                heading: 'fUSDC LP APY',
-                stat: '16,209%'   
-            }
-        ]
-    },
-];

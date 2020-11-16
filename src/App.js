@@ -4,8 +4,15 @@ import HeaderVideo from './headerVideo';
 import InfoSection from './infoSection';
 import Stats from './stats';
 import Team from './team';
+import Web3 from 'web3';
 import './App.css';
 import './Stars.css';
+import { contract, wallets } from './chainData';
+//const web3 = new Web3("HTTP://127.0.0.1:7545");
+//const web3 = new Web3(Web3.givenProvider || "HTTP://127.0.0.1:7545");
+
+const web3 = new Web3('https://mainnet.infura.io/v3/81dd5d5f63f2476db9cf3e5f15601660');
+
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +21,8 @@ class App extends Component {
       page: 'home',
       nextRebase: 0,
       mobile: false,
+      foodCirculating: 100000,
+      fusdcPeg: 0,
     };
     this.changePage = this.changePage.bind(this);
   }
@@ -45,10 +54,54 @@ class App extends Component {
     })
   }
 
+  getAccounts() {
+    web3.eth.getAccounts().then(res => {
+        this.setState({ accounts: res })
+    })
+  }
+
+  getFoodCirculating() {
+    const foodAbi = contract.food.abi;
+    const foodAddress = contract.food.address;
+    const foodPyramid = new web3.eth.Contract(foodAbi, foodAddress);
+
+    let supplyTotal = 100000
+    let supplyTeam = 8875
+    supplyTotal += supplyTeam
+
+    foodPyramid.methods.balanceOf(wallets.treasury).call((err, result) => {
+      const supplyTreasury = result * 10 ** -18;
+        supplyTotal -= supplyTreasury;
+      this.setState({ 
+        foodCirculating: supplyTotal 
+      })
+    })
+
+    foodPyramid.methods.balanceOf(wallets.marketing).call((err, result) => {
+      const supplyMarketing = result * 10 ** -18;
+        supplyTotal -= supplyMarketing
+      this.setState({ 
+        foodCirculating: supplyTotal 
+      })
+    })
+  }
+
+  getFusdcPricePeg() {
+    const fusdcPegAbi = contract.fUSDC.pegAbi;
+    const fusdcPegAddress = contract.fUSDC.pegAddress;
+    const fusdcPeg = new web3.eth.Contract(fusdcPegAbi, fusdcPegAddress);
+
+    fusdcPeg.methods.price().call((err, result) => {
+      const fusdcPeg = result * 10 ** -18;
+      this.setState({ 
+        fusdcPeg: fusdcPeg 
+      })
+    })
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.page !== this.state.page) {
         this.changePage(this.state.page);
-        this.getRebase();
         this.detectMobile();
     }
   }
@@ -56,19 +109,33 @@ class App extends Component {
   componentDidMount() {
     this.getRebase();
     this.detectMobile();
+    this.getFoodCirculating();
+    this.getFusdcPricePeg();
+  //  this.getAccounts();
   }
-
 
   showPage() {
     switch (this.state.page) {
       case 'about':
-        return <InfoSection onClick={this.changePage} mobile={this.state.mobile} />
+        return <InfoSection 
+                  onClick={this.changePage} 
+                  mobile={this.state.mobile} />
       case 'stats':
-        return <Stats onClick={this.changePage} mobile={this.state.mobile} nextRebase={this.state.nextRebase} />
+        return <Stats 
+                  onClick={this.changePage} 
+                  mobile={this.state.mobile} 
+                  nextRebase={this.state.nextRebase}
+                  foodCirculating={this.state.foodCirculating}
+                  fusdcPeg={this.state.fusdcPeg} />
       case 'team':
-        return <Team onClick={this.changePage} mobile={this.state.mobile} />
+        return <Team 
+                  onClick={this.changePage} 
+                  mobile={this.state.mobile} />
       default:
-        return <HeaderVideo onClick={this.changePage} mobile={this.state.mobile} page={this.state.page} />
+        return <HeaderVideo 
+                  onClick={this.changePage} 
+                  mobile={this.state.mobile} 
+                  page={this.state.page} />
     }
   }
 
@@ -77,7 +144,8 @@ class App extends Component {
       <div className="App">
         <NavBar onClick={this.changePage} page={this.state.page} />
         
-        {this.showPage()}        
+        {this.showPage()}  
+
       </div>
     )
   }

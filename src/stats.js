@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import TokenButton from './tokenButton';
-import TokenLink from './tokenLink';
-import StatBox from './statBox';
-import Countdown from './Countdown'
-import { tokenData, headings } from './siteData';
-import SocialButtons from './socialButtons';
-import BackButton from './backButton';
+import { headings } from './siteData';
+import { tokenData } from './tokenData';
+import FoodStats from './statsFood';
+import FusdcStats from './statsfUSDC';
+import FethStats from './statsfETH';
+import Footer from './footer';
 
 
 export default class Stats extends Component {
@@ -13,12 +13,8 @@ export default class Stats extends Component {
         super(props);
         this.state = {
             allTokenData: tokenData,
-            singleTokenData: tokenData[0],
             id: tokenData[0].id,
-            token: tokenData[0].name,
-            buylink: tokenData[0].buylink,
-            chartlink: tokenData[0].chartlink,
-            nextRebase: this.props.nextRebase
+            nextRebase: this.props.nextRebase,
         };
         this.changeToken = this.changeToken.bind(this);
     }
@@ -29,14 +25,27 @@ export default class Stats extends Component {
         });
     }
 
+    showTokenStats() {
+        switch (this.state.id) {
+            default:
+                return <FoodStats 
+                        nextRebase={this.state.nextRebase} 
+                        foodCirculating={this.props.foodCirculating} />
+            case 1:
+                return <FusdcStats
+                        nextRebase={this.state.nextRebase}
+                        fusdcPeg={this.props.fusdcPeg} />
+            case 2:
+                return <FethStats
+                        nextRebase={this.state.nextRebase} />
+        }
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.id !== this.state.id) {
             const newToken = this.state.allTokenData[this.state.id];
             this.setState({
-                singleTokenData: newToken,
-                buylink: newToken.buylink, 
-                chartlink: newToken.chartlink,
-                token: newToken.name
+                id: newToken.id
             })
         }
     }
@@ -49,71 +58,23 @@ export default class Stats extends Component {
                 </div>
 
                 <div className="container">
-                    <div className="row justify-content-center">
-                        {this.state.allTokenData.map((token, i) => 
+                    <div id="tokenButtons" className="row justify-content-center">
+                        {this.state.allTokenData.map(token => 
                             <TokenButton 
-                                name={token.name} 
-                                id={token.id}
-                                key={i}
+                                name={token.name}
+                                id={token.id} 
                                 active={this.state.id} 
-                                handleClick={this.changeToken} 
-                                buylink={token.buylink}
-                                chartlink={token.chartlink}
-                            />
+                                handleClick={this.changeToken} />
                         )}
                     </div>
 
-                    <div className="row justify-content-center">
-                        <TokenLink link={this.state.buylink} text={headings.buy + " " + this.state.token} />
-                        <TokenLink link={this.state.chartlink} text={this.state.token + " " + headings.chart} />
-                    </div>
 
-                    <div id="countdown">
-                        <hr className="hrwhite" />
+                    {this.showTokenStats()}
 
-                        <div className="row justify-content-center">
-                            <h4>{headings.nextRebase}</h4>
-                        </div>
-                        <Countdown target={this.state.nextRebase} />
-
-                        <hr className="hrwhite" />
-                    </div>
-
-                    <div className="row justify-content-center">
-                        {this.state.singleTokenData.statboxes.map((box, i) => 
-                            <StatBox text={box.heading} stat={box.stat} key={i}/>
-                        )}
-                    </div>
-                    
                 </div>
 
-                {this.props.mobile ? (
-                        <div class="row justify-content-center">
-                            <BackButton text="<" handleClick={this.props.onClick} />
-                        </div>
-                    ) : null
-                }
-
-                <SocialButtons />
+                <Footer mobile={this.props.mobile} onClick={this.props.onClick} />
             </div>
         )
     }
 }
-
-/*
-If you want to toggle countdown based on FOOD/fToken selection add this logic:
-{
-    this.state.id !== 0 ? (
-        <div>
-            <hr className="hrwhite" />
-            
-            <div className="row justify-content-center">
-                <h4>Next {this.state.token} Rebase</h4>
-            </div>
-            <Countdown target={this.state.nextRebase} />
-            
-            <hr className="hrwhite" />
-        </div>
-    ) : null
-}
-*/
