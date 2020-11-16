@@ -1,7 +1,7 @@
 import React from 'react';
 import TitleLogo from './titleLogo';
 import NavItem from './navButton';
-import { nav } from './siteData';
+import { nav, siteLinks } from './siteData';
 
 export default class NavBar extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ export default class NavBar extends React.Component {
                     <div className="collapse navbar-collapse" id="ftco-nav">
                         <ul className="navbar-nav ml-auto">
                             {
-                                Object.entries(nav).map(([key, value]) => {
+                                Object.entries(nav).slice(0, 4).map(([key, value]) => {
                                     return(
                                         <li className="nav-item" key={key}>
                                             <NavItem 
@@ -38,8 +38,8 @@ export default class NavBar extends React.Component {
                                 })
                             }
                             <li className="nav-item" key="nav-05">
-                                <button className="nav-link-active" target="_blank" rel="noreferrer">
-                                    <a href="https://medium.com/@FoodPyramid">{nav.blog}</a>
+                                <button className="nav-link-active">
+                                    <a href={siteLinks.blog} target="_blank" rel="noreferrer">{nav.blog}</a>
                                 </button>
                             </li>
                         </ul>

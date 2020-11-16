@@ -47,8 +47,6 @@ export const nav = {
     blog: 'Learn',
 }
 
-export const navLinks = ['home', 'about', 'stats', 'team']
-
 export const siteLinks = {
     youtubeHeader: 'https://www.youtube.com/embed/PfhIERTpTh4',
     blog: 'https://foodpyramid.medium.com/',
