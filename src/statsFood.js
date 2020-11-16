@@ -12,7 +12,7 @@ export default class FoodStats extends Component {
         this.state = {
             token: tokenData[0].name,
             buylink: tokenData[0].buylink,
-            chartlink: tokenData[0].buylink,
+            chartlink: tokenData[0].chartlink,
         }
     }
 

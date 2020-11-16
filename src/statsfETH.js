@@ -12,7 +12,7 @@ export default class FethStats extends Component {
         this.state = {
             token: tokenData[2].name,
             buylink: tokenData[2].buylink,
-            chartlink: tokenData[2].buylink,
+            chartlink: tokenData[2].chartlink,
         }
     }
 

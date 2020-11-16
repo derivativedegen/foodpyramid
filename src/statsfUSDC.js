@@ -12,7 +12,7 @@ export default class FusdcStats extends Component {
         this.state = {
             token: tokenData[1].name,
             buylink: tokenData[1].buylink,
-            chartlink: tokenData[1].buylink,
+            chartlink: tokenData[1].chartlink,
         }
     }
 

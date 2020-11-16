@@ -8,9 +8,9 @@ export default class StatBox extends Component {
                     <b>{this.props.text}</b>
                 </h3>
                 
-                <br />
-
-                <h4 className="">{this.props.stat}</h4>
+                <div className="row justify-content-center">                
+                    <h4 className="statbox-stat">{this.props.stat}</h4>
+                </div>
             </div>
         )
     }
