@@ -11,7 +11,8 @@ import { contract, wallets } from './chainData';
 //const web3 = new Web3("HTTP://127.0.0.1:7545");
 //const web3 = new Web3(Web3.givenProvider || "HTTP://127.0.0.1:7545");
 
-const web3 = new Web3('https://mainnet.infura.io/v3/81dd5d5f63f2476db9cf3e5f15601660');
+const WEB3_INFURA_API_KEY = process.env.REACT_APP_INFURA_KEY;
+const web3 = new Web3(WEB3_INFURA_API_KEY);
 
 
 class App extends Component {
