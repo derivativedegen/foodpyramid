@@ -33,7 +33,6 @@ export default class FethStats extends Component {
 
                 <div className="row justify-content-center">
                     <StatBox text={'Price Peg'} stat={'1'} />
-                    <StatBox text={'Rebase'} stat={`UTC 4H Close`} />
                     <StatBox text={'Rewards Paid'} stat={'Coming Soon'} />
                 </div>
             </div>

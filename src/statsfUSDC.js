@@ -34,7 +34,6 @@ export default class FusdcStats extends Component {
 
                 <div className="row justify-content-center">
                     <StatBox text={'Price Peg'} stat={this.props.fusdcPeg.toFixed(2)} />
-                    <StatBox text={'Rebase'} stat={`UTC 4H Close`} />
                     <StatBox text={'Rewards Paid'} stat={'2,534.06 USDC'} />
                 </div>
             </div>

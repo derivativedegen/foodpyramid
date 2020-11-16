@@ -39,7 +39,6 @@ export default class FoodStats extends Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <StatBox text={'Total Supply'} stat={`100,000`} />
                     <StatBox text={'Circulating Supply'} stat={foodCirculating} />
                     <StatBox text={'Rewards Paid'} stat={'4,795.84 USDC'} />
                 </div>
