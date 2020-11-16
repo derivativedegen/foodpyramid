@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import TokenLink from './tokenLink';
 import StatBox from './statBox';
 import Countdown from './Countdown';
-import { headings } from './siteData';
-import { tokenData } from './tokenData';
+import { headings, tokenData } from './siteData';
 
 
 export default class FusdcStats extends Component {
@@ -14,10 +13,6 @@ export default class FusdcStats extends Component {
             buylink: tokenData[1].buylink,
             chartlink: tokenData[1].chartlink,
         }
-    }
-
-    numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     render() {
@@ -38,9 +33,9 @@ export default class FusdcStats extends Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <StatBox text={'fUSDC Peg'} stat={'$' + this.props.fusdcPeg.toFixed(2)} />
-                    <StatBox text={'fUSDC Rebase'} stat={`UTC 4H Close`} />
-                    <StatBox text={'fUSDC APY'} stat={'16,209%'} />
+                    <StatBox text={'Price Peg'} stat={this.props.fusdcPeg.toFixed(2)} />
+                    <StatBox text={'Rebase'} stat={`UTC 4H Close`} />
+                    <StatBox text={'Rewards Paid'} stat={'2,534.06 USDC'} />
                 </div>
             </div>
         )

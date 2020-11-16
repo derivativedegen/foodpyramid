@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import TokenButton from './tokenButton';
-import { headings } from './siteData';
-import { tokenData } from './tokenData';
+import { headings, tokenData } from './siteData';
 import FoodStats from './statsFood';
 import FusdcStats from './statsfUSDC';
 import FethStats from './statsfETH';

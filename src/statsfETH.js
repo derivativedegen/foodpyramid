@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import TokenLink from './tokenLink';
 import StatBox from './statBox';
 import Countdown from './Countdown';
-import { headings } from './siteData';
-import { tokenData } from './tokenData';
-
+import { headings, tokenData } from './siteData';
 
 export default class FethStats extends Component {
     constructor(props){
@@ -14,10 +12,6 @@ export default class FethStats extends Component {
             buylink: tokenData[2].buylink,
             chartlink: tokenData[2].chartlink,
         }
-    }
-
-    numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     render() {
@@ -38,9 +32,9 @@ export default class FethStats extends Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <StatBox text={'fETH Peg'} stat={'Coming Soon'} />
-                    <StatBox text={'fETH Rebase'} stat={`UTC 4H Close`} />
-                    <StatBox text={'fETH APY'} stat={'Coming Soon'} />
+                    <StatBox text={'Price Peg'} stat={'1'} />
+                    <StatBox text={'Rebase'} stat={`UTC 4H Close`} />
+                    <StatBox text={'Rewards Paid'} stat={'Coming Soon'} />
                 </div>
             </div>
         )

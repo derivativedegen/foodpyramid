@@ -21,6 +21,39 @@ export const aboutData = [
     },
 ]
 
+export const headings = {
+    siteTitle: 'FOOD PYRAMID',
+    about: `Crypto Twitter's very own fully upfront, completely honest Pyramid Scheme™`,
+    stats: 'Foodture of Finance',
+    nextRebase: 'Next fToken Rebase',
+    team: `Meet the legendary team that's ending world hunger with $FOOD.`,
+    days: 'Days',
+    hours: 'Hours',
+    minutes: 'Minutes',
+    seconds: 'Seconds',
+    buy: 'Buy',
+    chart: 'Chart',
+    statsButton: 'Enter the Pyramid',
+    aboutButton: 'About',
+    teamButton: 'Team',
+    blogButton: 'Learn',
+}
+
+export const nav = {
+    home: 'Home',
+    about: 'About',
+    stats: 'Numbahs',
+    team: 'Team',
+    blog: 'Learn',
+}
+
+export const navLinks = ['home', 'about', 'stats', 'team']
+
+export const siteLinks = {
+    youtubeHeader: 'https://www.youtube.com/embed/PfhIERTpTh4',
+    blog: 'https://foodpyramid.medium.com/',
+}
+
 export const teamData = [
     {
         name: 'Quantadelic',
@@ -80,35 +113,23 @@ export const teamData = [
     },
 ]
 
-export const headings = {
-    siteTitle: 'FOOD PYRAMID',
-    about: `Crypto Twitter's very own fully upfront, completely honest Pyramid Scheme™`,
-    stats: 'Foodture of Finance',
-    nextRebase: 'Next fToken Rebase',
-    team: `Meet the legendary team that's ending world hunger with $FOOD.`,
-    days: 'Days',
-    hours: 'Hours',
-    minutes: 'Minutes',
-    seconds: 'Seconds',
-    buy: 'Buy',
-    chart: 'Chart',
-    statsButton: 'Enter the Pyramid',
-    aboutButton: 'About',
-    teamButton: 'Team',
-    blogButton: 'Learn',
-}
-
-export const nav = {
-    home: 'Home',
-    about: 'About',
-    stats: 'Numbahs',
-    team: 'Team',
-    blog: 'Learn',
-}
-
-export const navLinks = ['home', 'about', 'stats', 'team']
-
-export const siteLinks = {
-    youtubeHeader: 'https://www.youtube.com/embed/PfhIERTpTh4',
-    blog: 'https://foodpyramid.medium.com/',
-}
+export const tokenData = [
+    {
+        name: 'FOOD',
+        id: 0,
+        buylink: `https://uniswap.exchange/swap?inputCurrency=ETH&outputCurrency=0xf3348f43503d35cad421864d941cd89bc3a0b797`,
+        chartlink: `https://dex.vision/?ticker=UniswapV2:FOODUSD-0x69CfC0b5aF7231b316de8681F81a205338e94973&interval=60`,
+    },
+    {
+        name: 'fUSDC',
+        id: 1,
+        buylink: `https://app.uniswap.org/#/swap?inputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&outputCurrency=0x6b951017a3212edc6b275976bfdd50969f6e1c62`,
+        chartlink: `https://beta.dex.vision/?ticker=UniswapV2:FUSDCUSDC-0x6fc30adEdD79fFB4cBB2FDbef1F779bBF3aa8d36&interval=240`,
+    },
+    {
+        name: 'fETH',
+        id: 2,
+        buylink: `https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0x0a8d64E729F613B3FF58ED4A345459af4E7dc7FE`,
+        chartlink: `https://www.dextools.io/app/uniswap/pair-explorer/0x34C4F59FeD483E540770991a6713E4e7f881e27E`,
+    }
+];
