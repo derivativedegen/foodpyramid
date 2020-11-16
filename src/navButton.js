@@ -12,6 +12,7 @@ export default class NavItem extends Component {
     render() {
         return (
             <button className={this.toggleClass()} id={this.props.name} onClick={this.props.onClick} >
+                {/*this.props.name*/}
                 {this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)}
             </button>
         )
