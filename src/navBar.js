@@ -1,7 +1,7 @@
 import React from 'react';
 import TitleLogo from './titleLogo';
 import NavItem from './navButton';
-import { nav, navLinks } from './siteData';
+import { nav } from './siteData';
 
 export default class NavBar extends React.Component {
     constructor(props) {
@@ -23,21 +23,20 @@ export default class NavBar extends React.Component {
 
                     <div className="collapse navbar-collapse" id="ftco-nav">
                         <ul className="navbar-nav ml-auto">
-
                             {
-                                navLinks.map((link, i) => {
+                                Object.entries(nav).map(([key, value]) => {
                                     return(
-                                        <li className="nav-item" key={i}>
+                                        <li className="nav-item" key={key}>
                                             <NavItem 
+                                                id={key}
                                                 onClick={this.handleClick}
-                                                name={link}
+                                                name={value}
                                                 active={this.props.page}
                                             />
                                         </li>
                                     )
                                 })
                             }
-                            
                             <li className="nav-item" key="nav-05">
                                 <button className="nav-link-active" target="_blank" rel="noreferrer">
                                     <a href="https://medium.com/@FoodPyramid">{nav.blog}</a>
@@ -71,6 +70,20 @@ export default class NavBar extends React.Component {
                     key={key}
                     onClick={this.handleClick}
                     name={value}
+                    active={this.props.page}
+                />
+            </li>
+        )
+    })
+}
+
+{
+    navLinks.map((link, i) => {
+        return(
+            <li className="nav-item" key={i}>
+                <NavItem 
+                    onClick={this.handleClick}
+                    name={link}
                     active={this.props.page}
                 />
             </li>
