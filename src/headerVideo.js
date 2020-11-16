@@ -2,11 +2,6 @@ import React from 'react';
 import BuyNavButton from './buyNavButton';
 import SocialButtons from './socialButtons';
 import { headings, siteLinks } from './siteData';
-import Web3 from 'web3';
-
-
-
-
 
 export default class HeaderVideo extends React.Component {
     constructor(props) {
