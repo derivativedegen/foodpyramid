@@ -8362,10 +8362,10 @@ textarea.form-control {
 
 .testimony-wrap {
   background: rgba(0, 0, 0, 0.5);
-  background-image: radial-gradient(ellipse at 50px 10px , rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 1%, rgba(0,0,0,0.5) 100%);
+  background-image: radial-gradient(ellipse at 50px 10px , rgba(100,100,100,0.1) 0%, rgba(100,100,100,0.1) 1%, rgba(0,0,0,0.5) 100%);
   display: block;
   position: relative;
-  border: 1px solid rgb(255,255,255,0.2);
+  border: 1px solid rgb(150,150,150,0.2);
   border-radius: 20px;
   height: 375px; 
   width: 300px;

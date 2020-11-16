@@ -6,7 +6,7 @@ export default class TeamMember extends Component {
 
         return(
             <div className="item text-center">
-                <div className="testimony-wrap p-4 pb-5">
+                <div className="testimony-wrap p-4 pb-5 shadow-lg bg-black">
                     <div className="user-img mb-4" style={{backgroundImage: imageData, border: '1px solid white'}}>
                     </div>
                     <div className="text">
