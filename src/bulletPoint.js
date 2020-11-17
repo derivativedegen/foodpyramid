@@ -10,7 +10,7 @@ export default class BulletPoint extends Component {
             <div className="col-md-6 col-lg-3 d-flex align-self-stretch">
                 <div className="media block-6 services d-block text-center">
                     <div className="d-flex justify-content-center">
-                        <div className="icon color-1 d-flex justify-content-center mb-3">
+                        <div className="color-1 d-flex justify-content-center mb-3">
                             <span className="align-self-center">
                                 <img src={bulletpic} style={{height: 100, width: 'auto'}} alt="bulletpoint" />
                             </span>

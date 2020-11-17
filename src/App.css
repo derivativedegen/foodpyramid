@@ -75,7 +75,8 @@ html {
   position: relative;
   height: 200px;
   width: 300px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
+  background-image: radial-gradient(ellipse at 50px 10px , rgba(250,250,250,0.3) 0%, rgba(200,200,200,0.2) 50%, rgba(100,100,100,0.1) 100%);  
   border-radius: 20px;
   margin: 25px;
   color: white;
@@ -90,14 +91,15 @@ html {
 
 .tokenlink, .tokenlink:hover {
   height: 75px;
-  width: 300px;
-  background-color: rgba(0,0,0,1);
-  border: 0px;
-  border-radius: 20px;
-  margin: 25px;
+  width: 275px;
+  background: rgba(0, 0, 0, 0.45);
+  background-image: radial-gradient(ellipse at 50px 10px , rgba(100,100,100,0.1) 0%, rgba(100,100,100,0.1) 30%, rgba(0,0,0,0.5) 100%);
+  border: 1px solid rgba(0,0,0,0.8);
+  border-radius: 60px;
+  margin: 20px;
+  padding: 40px;
   color: black;
   text-align: center;
-  padding: 40px;
   outline: none;
   cursor: pointer;
 }
@@ -148,7 +150,8 @@ html {
   border: 1px solid #fff;
   margin: 20px;
   text-align: center;
-  background-color: rgba(255,255,255,0.5);
+  color: black;
+  background: rgba(255, 255, 255, 0.5);
   outline: none !important;
   cursor: pointer;
 }
