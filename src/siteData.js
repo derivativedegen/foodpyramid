@@ -119,11 +119,14 @@ export const tokenData = [
         chartlink: `https://dex.vision/?ticker=UniswapV2:FOODUSD-0x69CfC0b5aF7231b316de8681F81a205338e94973&interval=60`,
         statbox: [
             {
-                heading: 'Circulating',
+                heading: 'FOOD/ETH',
             },
             {
-                heading: 'Rewards Paid',
+                heading: 'Circulating Supply',
             },
+            {
+                heading: 'Rewards Paid'
+            }
         ]
     },
     {

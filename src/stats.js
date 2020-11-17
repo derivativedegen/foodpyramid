@@ -29,7 +29,8 @@ export default class Stats extends Component {
             default:
                 return <FoodStats 
                         nextRebase={this.state.nextRebase} 
-                        foodCirculating={this.props.foodCirculating} />
+                        foodCirculating={this.props.foodCirculating}
+                        foodEthPrice={this.props.foodEthPrice} />
             case 1:
                 return <FusdcStats
                         nextRebase={this.state.nextRebase}

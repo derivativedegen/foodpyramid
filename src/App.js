@@ -25,6 +25,7 @@ class App extends Component {
       foodCirculating: 100000,
       fusdcPeg: 0,
       fethPeg: 0,
+      foodEthPrice: 0,
     };
     this.changePage = this.changePage.bind(this);
   }
@@ -114,6 +115,23 @@ class App extends Component {
     })
   }
 
+  getFoodEthPrice() {
+    const uniswapAbi = contract.uniswap.abi;
+    const uniswapAddress = contract.uniswap.address;
+    const foodAddress = contract.food.address;
+    const weth = contract.wETH.address;
+    const uniRouter = new web3.eth.Contract(uniswapAbi, uniswapAddress);
+    const bigNumber = '1000000000000000000';
+
+    uniRouter.methods.getAmountsOut(bigNumber,[foodAddress, weth]).call(((err, result) => { 
+      const foodEthPrice = result[1] * 10 ** -18;
+      const foodEthRounded = foodEthPrice.toFixed(8);
+      this.setState({
+        foodEthPrice: foodEthRounded
+      })
+    }))
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.page !== this.state.page) {
         this.changePage(this.state.page);
@@ -127,6 +145,7 @@ class App extends Component {
     this.getFoodCirculating();
     this.getFusdcPricePeg();
     this.getFethPricePeg();
+    this.getFoodEthPrice();
   //  this.getAccounts();
   }
 
@@ -143,7 +162,8 @@ class App extends Component {
                   nextRebase={this.state.nextRebase}
                   foodCirculating={this.state.foodCirculating}
                   fusdcPeg={this.state.fusdcPeg}
-                  fethPeg={this.state.fethPeg} />
+                  fethPeg={this.state.fethPeg}
+                  foodEthPrice={this.state.foodEthPrice} />
       case 'team':
         return <Team 
                   onClick={this.changePage} 
@@ -169,3 +189,12 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+router.methods.getAmountsOut(bigNumberString,[food,weth]).call((err, result) => {
+  const foodEthPrice = result[1] * 10 ** -18; 
+  this.setState({
+    foodEthPrice: foodEthPrice
+  })
+})
+*/

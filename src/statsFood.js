@@ -9,7 +9,9 @@ export default class FoodStats extends Component {
     constructor(props){
         super(props);
         this.state = {
-            token: tokenData[0]
+            token: tokenData[0],
+            foodCirculating: this.props.foodCirculating,
+            foodEthPrice: this.props.foodEthPrice,
         }
     }
 
@@ -18,7 +20,7 @@ export default class FoodStats extends Component {
     }
 
     render() {
-        const foodCirculating = this.numberWithCommas(Math.ceil(this.props.foodCirculating))
+        const foodCirculating = this.numberWithCommas(Math.ceil(this.state.foodCirculating))
 
         return(
             <div>
@@ -37,8 +39,9 @@ export default class FoodStats extends Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <StatBox text={this.state.token.statbox[0].heading} stat={foodCirculating} />
-                    <StatBox text={this.state.token.statbox[1].heading} stat={'4,795.84 USDC'} />
+                    <StatBox text={this.state.token.statbox[0].heading} stat={this.state.foodEthPrice} />
+                    <StatBox text={this.state.token.statbox[1].heading} stat={foodCirculating} />
+                    <StatBox text={this.state.token.statbox[2].heading} stat={'4,795.84 USDC'} />
                 </div>
             </div>
         )
