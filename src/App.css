@@ -92,8 +92,8 @@ html {
 .tokenlink, .tokenlink:hover {
   height: 75px;
   width: 275px;
-  background: rgba(0, 0, 0, 0.45);
-  background-image: radial-gradient(ellipse at 50px 10px , rgba(100,100,100,0.1) 0%, rgba(100,100,100,0.1) 30%, rgba(0,0,0,0.5) 100%);
+  background: rgba(0, 0, 0, 0.55);
+  background-image: radial-gradient(ellipse at 50px 10px , rgba(100,100,100,0.2) 0%, rgba(100,100,100,0.1) 30%, rgba(0,0,0,0.5) 100%);
   border: 1px solid rgba(0,0,0,0.8);
   border-radius: 60px;
   margin: 20px;
