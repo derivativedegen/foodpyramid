@@ -36,7 +36,8 @@ export default class Stats extends Component {
                         fusdcPeg={this.props.fusdcPeg} />
             case 2:
                 return <FethStats
-                        nextRebase={this.state.nextRebase} />
+                        nextRebase={this.state.nextRebase}
+                        fethPeg={this.props.fethPeg} />
         }
     }
 

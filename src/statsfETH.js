@@ -30,7 +30,7 @@ export default class FethStats extends Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <StatBox text={this.state.token.statbox[0].heading} stat={'1'} />
+                    <StatBox text={this.state.token.statbox[0].heading} stat={this.props.fethPeg} />
                     <StatBox text={this.state.token.statbox[1].heading} stat={'Coming Soon'} />
                 </div>
             </div>

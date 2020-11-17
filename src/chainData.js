@@ -956,6 +956,135 @@ export const contract = {
       abi: [
 
       ],
+      pegAddress: '0x390Cd0A9aEeC4AbAdaCceD1863e865C226904fB0',
+      pegAbi: [
+        {
+            'constant': true,
+            'inputs': [],
+            'name': "getData",
+            'outputs': [
+                {
+                    'name': "",
+                    'type': "uint256"
+                },
+                {
+                    'name': "",
+                    'type': "bool"
+                }
+            ],
+            'payable': false,
+            'stateMutability': "view",
+            'type': "function"
+        },
+        {
+            'constant': false,
+            'inputs': [],
+            'name': "renounceOwnership",
+            'outputs': [],
+            'payable': false,
+            'stateMutability': "nonpayable",
+            'type': "function"
+        },
+        {
+            'constant': true,
+            'inputs': [],
+            'name': "owner",
+            'outputs': [
+                {
+                    'name': "",
+                    'type': "address"
+                }
+            ],
+            'payable': false,
+            'stateMutability': "view",
+            'type': "function"
+        },
+        {
+            'constant': true,
+            'inputs': [],
+            'name': "isOwner",
+            'outputs': [
+                {
+                    'name': "",
+                    'type': "bool"
+                }
+            ],
+            'payable': false,
+            'stateMutability': "view",
+            'type': "function"
+        },
+        {
+            'constant': false,
+            'inputs': [
+                {
+                    'name': "_price",
+                    'type': "uint256"
+                }
+            ],
+            'name': "setPrice",
+            'outputs': [],
+            'payable': false,
+            'stateMutability': "nonpayable",
+            'type': "function"
+        },
+        {
+            'constant': true,
+            'inputs': [],
+            'name': "price",
+            'outputs': [
+                {
+                    'name': "",
+                    'type': "uint256"
+                }
+            ],
+            'payable': false,
+            'stateMutability': "view",
+            'type': "function"
+        },
+        {
+            'constant': false,
+            'inputs': [
+                {
+                    'name': "newOwner",
+                    'type': "address"
+                }
+            ],
+            'name': "transferOwnership",
+            'outputs': [],
+            'payable': false,
+            'stateMutability': "nonpayable",
+            'type': "function"
+        },
+        {
+            'inputs': [
+                {
+                    'name': "_price",
+                    'type': "uint256"
+                }
+            ],
+            'name': "constructor",
+            'payable': false,
+            'stateMutability': "nonpayable",
+            'type': "constructor"
+        },
+        {
+            'anonymous': false,
+            'inputs': [
+                {
+                    'indexed': true,
+                    'name': "previousOwner",
+                    'type': "address"
+                },
+                {
+                    'indexed': true,
+                    'name': "newOwner",
+                    'type': "address"
+                }
+            ],
+            'name': "OwnershipTransferred",
+            'type': "event"
+        }
+      ],
     },
     orchestrator: {
       abi: [

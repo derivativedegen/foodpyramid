@@ -24,6 +24,7 @@ class App extends Component {
       mobile: false,
       foodCirculating: 100000,
       fusdcPeg: 0,
+      fethPeg: 0,
     };
     this.changePage = this.changePage.bind(this);
   }
@@ -100,6 +101,19 @@ class App extends Component {
     })
   }
 
+  getFethPricePeg() {
+    const fethPegAbi = contract.fETH.pegAbi;
+    const fethPegAddress = contract.fETH.pegAddress;
+    const fethPeg = new web3.eth.Contract(fethPegAbi, fethPegAddress);
+
+    fethPeg.methods.price().call((err, result) => {
+      const fethPeg = result * 10 ** -18;
+      this.setState({ 
+        fethPeg: fethPeg 
+      })
+    })
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.page !== this.state.page) {
         this.changePage(this.state.page);
@@ -112,6 +126,7 @@ class App extends Component {
     this.detectMobile();
     this.getFoodCirculating();
     this.getFusdcPricePeg();
+    this.getFethPricePeg();
   //  this.getAccounts();
   }
 
@@ -127,7 +142,8 @@ class App extends Component {
                   mobile={this.state.mobile} 
                   nextRebase={this.state.nextRebase}
                   foodCirculating={this.state.foodCirculating}
-                  fusdcPeg={this.state.fusdcPeg} />
+                  fusdcPeg={this.state.fusdcPeg}
+                  fethPeg={this.state.fethPeg} />
       case 'team':
         return <Team 
                   onClick={this.changePage} 
