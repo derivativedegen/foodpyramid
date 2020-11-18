@@ -125,6 +125,7 @@ export const tokenData = [
             }, 
             {
                 heading: '已支付奖励',
+                stat: '4,795.84 USDC',
             }
         ]
     },
@@ -139,6 +140,7 @@ export const tokenData = [
             }, 
             {
                 heading: '已支付奖励',
+                stat: '2,534.06 USDC',
             }
         ]
     },

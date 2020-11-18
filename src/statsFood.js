@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import TokenLink from './tokenLink';
 import StatBox from './statBox';
-import Countdown from './Countdown';
 import { headings, tokenData } from './siteData';
 import SiteFrame from './siteFrame';
 

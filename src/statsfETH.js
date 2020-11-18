@@ -46,7 +46,7 @@ export default class FethStats extends Component {
 
                 <div className="row justify-content-center">
                     <StatBox text={this.state.token.statbox[0].heading} stat={this.state.fethPeg} />
-                    <StatBox text={this.state.token.statbox[1].heading} stat={'2,534.06 USDC'} />
+                    <StatBox text={this.state.token.statbox[1].heading} stat={this.state.token.statbox[1].stat} />
                 </div>
             </div>
         )

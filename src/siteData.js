@@ -156,6 +156,7 @@ export const tokenData = [
             },
             {
                 heading: 'Rewards Paid',
+                stat: 'Coming Soon',
             },
         ]
     }

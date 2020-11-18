@@ -15,7 +15,7 @@ export default class SiteFrame extends Component {
                     ></iframe>
 
                     <div className="text-center">
-                        <p><a href={address} target="_blank">Open on {q.host}</a></p>
+                        <p><a href={address} target="_blank" rel="noreferrer">Open on {q.host}</a></p>
                     </div>
             </div>
         )
