@@ -166,11 +166,18 @@ html {
   margin-bottom: 65px;
 }
 
+.externalSiteFrameYT {
+  border: 3px solid #000;
+  border-radius: 20px;
+  height: 550px;
+  margin-bottom: 25px;
+}
+
 .externalSiteChild {
   border: 1px solid #000;
   border-radius: 20px;
   width: 100%; 
-  height: 550px; 
+  height: 100%; 
 }
 
 
