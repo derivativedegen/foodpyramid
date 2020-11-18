@@ -156,6 +156,24 @@ html {
   cursor: pointer;
 }
 
+.externalSiteFrame {
+  background: #000;
+  position:relative;
+  border-radius: 20px;
+  width: 100%;
+  height: 550px;
+  margin-top: 20px;
+  margin-bottom: 65px;
+}
+
+.externalSiteChild {
+  border: 1px solid #000;
+  border-radius: 20px;
+  width: 100%; 
+  height: 550px; 
+}
+
+
 .gibmoney {
   margin-top: 10px;
   margin-bottom: 30px;

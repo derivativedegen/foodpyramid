@@ -125,7 +125,8 @@ export const tokenData = [
                 heading: 'Circulating Supply',
             },
             {
-                heading: 'Rewards Paid'
+                heading: 'Rewards Paid',
+                stat: '4,795.84 USDC',
             }
         ]
     },
@@ -140,6 +141,7 @@ export const tokenData = [
             },
             {
                 heading: 'Rewards Paid',
+                stat: '2,534.06 USDC',
             },
         ]
     },

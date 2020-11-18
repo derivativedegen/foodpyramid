@@ -3,6 +3,7 @@ import TokenLink from './tokenLink';
 import StatBox from './statBox';
 import Countdown from './Countdown';
 import { headings, tokenData } from './siteData';
+import SiteFrame from './siteFrame';
 
 
 export default class FoodStats extends Component {
@@ -10,9 +11,29 @@ export default class FoodStats extends Component {
         super(props);
         this.state = {
             token: tokenData[0],
+            showBuyLink: false,
+            showChartLink: false,
             foodCirculating: this.props.foodCirculating,
             foodEthPrice: this.props.foodEthPrice,
         }
+        this.toggleBuyLink = this.toggleBuyLink.bind(this);
+        this.toggleChartLink = this.toggleChartLink.bind(this);
+    }
+
+    toggleBuyLink(e) {
+        const toggle = !this.state.showBuyLink;
+        this.setState({
+            showChartLink: false,
+            showBuyLink: toggle
+        })
+    }
+
+    toggleChartLink(e) {
+        const toggle = !this.state.showChartLink;
+        this.setState({
+            showBuyLink: false,
+            showChartLink: toggle
+        })
     }
 
     numberWithCommas(x) {
@@ -25,23 +46,18 @@ export default class FoodStats extends Component {
         return(
             <div>
                 <div className="row justify-content-center">
-                    <TokenLink link={this.state.token.buylink} text={headings.buy + " " + this.state.token.name} />
-                    <TokenLink link={this.state.token.chartlink} text={this.state.token.name + " " + headings.chart} />
+                    <TokenLink text={headings.buy + " " + this.state.token.name} onClick={this.toggleBuyLink} />
+                    <TokenLink text={this.state.token.name + " " + headings.chart} onClick={this.toggleChartLink} />
                 </div>
 
-                <div id="countdown" className="justify-content-center">
-                    <hr className="hrwhite" />
-                    <div className="row justify-content-center">
-                        <h4>{headings.nextRebase}</h4>
-                    </div>
-                    <Countdown target={this.props.nextRebase} />
-                    <hr className="hrwhite" />
-                </div>
+                {this.state.showBuyLink ? <SiteFrame src={this.state.token.buylink} /> : null }
+                {this.state.showChartLink ? <SiteFrame src={this.state.token.chartlink} /> : null }
+
 
                 <div className="row justify-content-center">
                     <StatBox text={this.state.token.statbox[0].heading} stat={this.state.foodEthPrice} />
                     <StatBox text={this.state.token.statbox[1].heading} stat={foodCirculating} />
-                    <StatBox text={this.state.token.statbox[2].heading} stat={'4,795.84 USDC'} />
+                    <StatBox text={this.state.token.statbox[2].heading} stat={this.state.token.statbox[2].stat} />
                 </div>
             </div>
         )
