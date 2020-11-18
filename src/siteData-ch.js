@@ -155,6 +155,7 @@ export const tokenData = [
             },
             {
                 heading: '已支付奖励',
+                stat: '敬请期待',
             },
         ]
     }
