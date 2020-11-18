@@ -19,7 +19,7 @@ export default class HeaderVideo extends React.Component {
     render() {
         return (
             <div className="container header-container justify-content-center">
-                <div className="row d-flex justify-content-center shadow-lg p-3 mb-5 bg-black externalSiteFrameYT">
+                <div className="row d-flex justify-content-center shadow-lg mb-5 bg-black externalSiteFrameYT">
                     <div className="embed-responsive embed-responsive-16by9">
                         <iframe 
                             title="Food Pyramid Trailer"
