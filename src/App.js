@@ -7,12 +7,13 @@ import Team from './team';
 import Web3 from 'web3';
 import './App.css';
 import './Stars.css';
-import { contract, wallets } from './chainData';
+import { contract, wallets, bigNumberString } from './chainData';
 //const web3 = new Web3("HTTP://127.0.0.1:7545");
 //const web3 = new Web3(Web3.givenProvider || "HTTP://127.0.0.1:7545");
 
 const WEB3_INFURA_API_KEY = process.env.REACT_APP_INFURA_KEY;
 const web3 = new Web3(WEB3_INFURA_API_KEY);
+const router = new web3.eth.Contract(contract.uniswap.abi, contract.uniswap.address);
 
 
 class App extends Component {
@@ -23,9 +24,14 @@ class App extends Component {
       nextRebase: 0,
       mobile: false,
       foodCirculating: 100000,
+      foodUsdc: 0,
       fusdcPeg: 0,
       fethPeg: 0,
       foodEthPrice: 0,
+      rewardsEth: 0,
+      fethBalanceLP: 0,
+      wethBalanceLP: 0,
+      wethPrice: 0,
     };
     this.changePage = this.changePage.bind(this);
   }
@@ -132,6 +138,69 @@ class App extends Component {
     }))
   }
 
+  getBalanceEthRewards() {
+    web3.eth.getBalance(wallets.rewards, (err, result) => {
+      let balance = result * 10 ** -18;
+      this.setState({
+        rewardsEth: balance,
+      })
+    })
+  }
+
+  getBalanceFethLP() {
+    var feth = new web3.eth.Contract(contract.fToken.abi, contract.fETH.address);
+    var weth = new web3.eth.Contract(contract.food.abi, contract.wETH.address);
+
+    feth.methods.balanceOf(contract.fETH.lpAddress).call((err, result) => { 
+      const fethBalance = result*10**-9;
+      this.setState({
+        fethBalanceLP: fethBalance,
+      })
+    });
+    weth.methods.balanceOf(contract.fETH.lpAddress).call((err, result) => { 
+      const wethBalance = result*10**-18;
+      this.setState({
+        wethBalanceLP: wethBalance,
+      })
+    })
+  }
+
+  getFoodUSDC() {
+    const food = contract.food.address;
+    const weth = contract.wETH.address;
+    const usdc = contract.usdc.address;
+
+    router.methods.getAmountsOut(bigNumberString, [food, weth, usdc]).call((err, result) => {
+      const foodPriceUSD = result[2] * 10 ** -6;
+      this.setState({
+        foodUsdc: foodPriceUSD,
+      })
+    })
+  }
+
+  getEthUSDC() {
+    const weth = contract.wETH.address;
+    const usdc = contract.usdc.address;
+
+    router.methods.getAmountsOut(bigNumberString, [weth, usdc]).call((err, result) => {
+      const wethPriceUSD = result[1] * 10 ** -6;
+      this.setState({
+        wethPrice: wethPriceUSD,
+      })
+    })
+  }
+
+  getFethUSDC() {
+    const feth = contract.fETH.address;
+    const weth = contract.wETH.address;
+    const usdc = contract.usdc.address;
+
+    router.methods.getAmountsOut(bigNumberString, [feth, weth, usdc]).call((err, result) => {
+      const fethPriceUSD = result[1]*10**-18;
+      console.log(fethPriceUSD)
+    })
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.page !== this.state.page) {
         this.changePage(this.state.page);
@@ -146,6 +215,11 @@ class App extends Component {
     this.getFusdcPricePeg();
     this.getFethPricePeg();
     this.getFoodEthPrice();
+    this.getBalanceEthRewards();
+    this.getBalanceFethLP();
+    this.getFoodUSDC();
+    this.getEthUSDC();
+  //  this.getFethUSDC();
   //  this.getAccounts();
   }
 
