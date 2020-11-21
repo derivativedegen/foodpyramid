@@ -122,12 +122,24 @@ export const tokenData = [
                 heading: 'FOOD/ETH',
             },
             {
+                heading: 'FOOD/USDC',
+            },
+            {
+                heading: 'Current APY'
+            },
+            {
+                heading: 'Current Rewards',
+            },
+            {
                 heading: 'Circulating Supply',
+            },
+            {
+                heading: 'LP Liquidity'
             },
             {
                 heading: 'Rewards Paid',
                 stat: '4,795.84 USDC',
-            }
+            },
         ]
     },
     {
@@ -149,14 +161,17 @@ export const tokenData = [
         name: 'fETH',
         id: 2,
         buylink: `https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0x0a8d64E729F613B3FF58ED4A345459af4E7dc7FE`,
-        chartlink: `https://www.dextools.io/app/uniswap/pair-explorer/0x34C4F59FeD483E540770991a6713E4e7f881e27E`,
+        chartlink: `https://chartex.pro/?symbol=UNISWAP:FETH.7DC7FE/WETH&theme=Dark`,
+        chartlink2: `https://www.dextools.io/app/uniswap/pair-explorer/0x34C4F59FeD483E540770991a6713E4e7f881e27E`,
         statbox: [
             {
                 heading: 'Price Peg',
             },
             {
-                heading: 'Rewards Paid',
-                stat: 'Coming Soon',
+                heading: 'Current APY'
+            },
+            {
+                heading: 'Current Rewards',
             },
         ]
     }

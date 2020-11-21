@@ -13,7 +13,12 @@ export default class FoodStats extends Component {
             showBuyLink: false,
             showChartLink: false,
             foodCirculating: this.props.foodCirculating,
+            foodBalanceFoodEthLP: this.props.foodBalanceFoodEthLP,
+            ethBalanceFoodEthLP: this.props.ethBalanceFoodEthLP,
+            foodRewards: this.props.foodRewards,
             foodEthPrice: this.props.foodEthPrice,
+            foodUsdcPrice: this.props.foodUsdcPrice,
+            foodAPY: 0,
         }
         this.toggleBuyLink = this.toggleBuyLink.bind(this);
         this.toggleChartLink = this.toggleChartLink.bind(this);
@@ -35,12 +40,31 @@ export default class FoodStats extends Component {
         })
     }
 
+    getFoodAPY() {
+        const rewards = this.state.foodRewards * 0.3;
+        const price = this.state.foodEthPrice;
+        const supply = this.state.foodCirculating - this.state.foodBalanceFoodEthLP;
+        const weeklyYield = rewards / price / supply;
+        const yearlyYield = (((1+weeklyYield)**52) - 1) * 100;
+        this.setState({
+            foodAPY: yearlyYield.toFixed(2)
+        })
+    }
+
     numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
+    componentDidMount() {
+        this.getFoodAPY();
+    }
+    
+
     render() {
         const foodCirculating = this.numberWithCommas(Math.ceil(this.state.foodCirculating))
+        const foodRewards = this.state.foodRewards.toFixed(4) * 0.3;
+        const foodUsdcPrice = this.state.foodUsdcPrice.toFixed(2);
+
 
         return(
             <div>
@@ -54,9 +78,11 @@ export default class FoodStats extends Component {
 
 
                 <div className="row justify-content-center">
-                    <StatBox text={this.state.token.statbox[0].heading} stat={this.state.foodEthPrice} />
-                    <StatBox text={this.state.token.statbox[1].heading} stat={foodCirculating} />
-                    <StatBox text={this.state.token.statbox[2].heading} stat={this.state.token.statbox[2].stat} />
+                    <StatBox text={this.state.token.statbox[0].heading} stat={this.state.foodEthPrice + " ETH"} />
+                    <StatBox text={this.state.token.statbox[1].heading} stat={'$' + foodUsdcPrice} />
+                    <StatBox text={this.state.token.statbox[2].heading} stat={this.state.foodAPY + ' %'} />
+                    <StatBox text={this.state.token.statbox[3].heading} stat={foodRewards + ' ETH'} />
+                    <StatBox text={this.state.token.statbox[4].heading} stat={foodCirculating + ' / 100,000'} />
                 </div>
             </div>
         )

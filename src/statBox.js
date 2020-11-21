@@ -15,3 +15,23 @@ export default class StatBox extends Component {
         )
     }
 }
+
+/*
+-- ADD TIME UPDATED --
+    const date = new Date(Date.now()).toUTCString()
+    <p><i>Updated: {date}</i></p>
+-- Fix Statbox-state CSS --
+*/
+
+
+/*
+<div className="container">
+    <div className="row justify-content-center">                
+        {this.props.stat2 ? (<h4>{this.props.stat2 + " USD"}</h4>) : null }
+    </div>
+
+    <div className="row justify-content-center">                
+        <h4 className="statbox-stat">{this.props.stat}</h4>
+    </div>
+</div>
+*/

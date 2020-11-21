@@ -8,6 +8,7 @@ import Web3 from 'web3';
 import './App.css';
 import './Stars.css';
 import { contract, wallets, bigNumberString } from './chainData';
+import decimalTo from './functions/utilities';
 //const web3 = new Web3("HTTP://127.0.0.1:7545");
 //const web3 = new Web3(Web3.givenProvider || "HTTP://127.0.0.1:7545");
 
@@ -24,15 +25,21 @@ class App extends Component {
       nextRebase: 0,
       mobile: false,
       foodCirculating: 100000,
-      foodUsdc: 0,
+      foodUsdcPrice: 0,
+      foodEthPrice: 0,
+      foodBalanceFoodEthLP: 0,
+      ethBalanceFoodEthLP: 0,
       fusdcPeg: 0,
       fethPeg: 0,
-      foodEthPrice: 0,
-      rewardsEth: 0,
-      fethBalanceLP: 0,
-      wethBalanceLP: 0,
+      fethBalanceLPinEth: 0,
+      fethBalanceFethEthLP: 0,
+      ethBalanceFethEthLP: 0,
+      rewardsFeth: 0,
+      rewardsFood: 0,
+      rewardsFusdc: 0,
       wethPrice: 0,
     };
+
     this.changePage = this.changePage.bind(this);
   }
 
@@ -69,8 +76,8 @@ class App extends Component {
     })
   }
 
-  getFoodCirculating() {
-    const foodAbi = contract.food.abi;
+  getFoodCirculatingSupply() {
+    const foodAbi = contract.erc20Token.abi;
     const foodAddress = contract.food.address;
     const foodPyramid = new web3.eth.Contract(foodAbi, foodAddress);
 
@@ -95,9 +102,9 @@ class App extends Component {
     })
   }
 
-  getFusdcPricePeg() {
-    const fusdcPegAbi = contract.fUSDC.pegAbi;
-    const fusdcPegAddress = contract.fUSDC.pegAddress;
+  getPricePegFusdc() {
+    const fusdcPegAbi = contract.fToken.pegAbi;
+    const fusdcPegAddress = contract.fusdc.pegAddress;
     const fusdcPeg = new web3.eth.Contract(fusdcPegAbi, fusdcPegAddress);
 
     fusdcPeg.methods.price().call((err, result) => {
@@ -108,78 +115,133 @@ class App extends Component {
     })
   }
 
-  getFethPricePeg() {
-    const fethPegAbi = contract.fETH.pegAbi;
-    const fethPegAddress = contract.fETH.pegAddress;
+  getPricePegFeth() {
+    const fethPegAbi = contract.fToken.pegAbi;
+    const fethPegAddress = contract.feth.pegAddress;
     const fethPeg = new web3.eth.Contract(fethPegAbi, fethPegAddress);
 
     fethPeg.methods.price().call((err, result) => {
-      const fethPeg = result * 10 ** -18;
+      const fethPegged = result * 10 ** -18;
       this.setState({ 
-        fethPeg: fethPeg 
+        fethPeg: fethPegged 
       })
     })
   }
 
-  getFoodEthPrice() {
+  getPriceFoodEth() {
     const uniswapAbi = contract.uniswap.abi;
     const uniswapAddress = contract.uniswap.address;
     const foodAddress = contract.food.address;
-    const weth = contract.wETH.address;
+    const weth = contract.weth.address;
     const uniRouter = new web3.eth.Contract(uniswapAbi, uniswapAddress);
     const bigNumber = '1000000000000000000';
 
     uniRouter.methods.getAmountsOut(bigNumber,[foodAddress, weth]).call(((err, result) => { 
       const foodEthPrice = result[1] * 10 ** -18;
-      const foodEthRounded = foodEthPrice.toFixed(8);
+      const foodEthRounded = parseFloat(foodEthPrice.toFixed(8));
       this.setState({
         foodEthPrice: foodEthRounded
       })
     }))
   }
 
-  getBalanceEthRewards() {
-    web3.eth.getBalance(wallets.rewards, (err, result) => {
+  getPriceFethEth() {
+    const uniswapAbi = contract.uniswap.abi;
+    const uniswapAddress = contract.uniswap.address;
+    const fethAddress = contract.feth.address;
+    const weth = contract.weth.address;
+    const uniRouter = new web3.eth.Contract(uniswapAbi, uniswapAddress);
+    const bigNumber = '1000000000000000000';
+
+    uniRouter.methods.getAmountsOut(bigNumber,[fethAddress, weth]).call(((err, result) => { 
+      const fethEthPrice = result[1] * 10 ** -18;
+      const fethEthRounded = parseFloat(fethEthPrice.toFixed(8));
+      this.setState({
+        fethBalanceLPinEth: fethEthRounded
+      })
+    }))
+  }
+
+  getBalancefTokenRewards() {
+    const foodAbi = contract.erc20Token.abi;
+    const foodAddress = contract.food.address;
+    const foodPyramid = new web3.eth.Contract(foodAbi, foodAddress);
+
+    foodPyramid.methods.balanceOf(contract.fusdc.rewards).call((err, result) => {
       let balance = result * 10 ** -18;
       this.setState({
-        rewardsEth: balance,
+        rewardsFusdc: balance,
+      })
+    })
+
+    foodPyramid.methods.balanceOf(contract.feth.rewards).call((err, result) => {
+      let balance = result * 10 ** -18;
+      this.setState({
+        rewardsFeth: balance,
       })
     })
   }
 
-  getBalanceFethLP() {
-    var feth = new web3.eth.Contract(contract.fToken.abi, contract.fETH.address);
-    var weth = new web3.eth.Contract(contract.food.abi, contract.wETH.address);
-
-    feth.methods.balanceOf(contract.fETH.lpAddress).call((err, result) => { 
-      const fethBalance = result*10**-9;
+  getBalanceFoodRewards() {
+    web3.eth.getBalance(contract.food.rewards, (err, result) => {
+      let balance = result * 10 ** -18;
       this.setState({
-        fethBalanceLP: fethBalance,
+        rewardsFood: balance,
+      })
+    })
+  }
+
+  getBalancesFoodLP() {
+    var food = new web3.eth.Contract(contract.erc20Token.abi, contract.food.address);
+    var weth = new web3.eth.Contract(contract.erc20Token.abi, contract.weth.address);
+
+    food.methods.balanceOf(contract.food.lpAddress).call((err, result) => { 
+      const foodBalance = result*10**-18;
+      this.setState({
+        foodBalanceFoodEthLP: foodBalance,
       })
     });
-    weth.methods.balanceOf(contract.fETH.lpAddress).call((err, result) => { 
+    weth.methods.balanceOf(contract.food.lpAddress).call((err, result) => { 
       const wethBalance = result*10**-18;
       this.setState({
-        wethBalanceLP: wethBalance,
+        ethBalanceFoodEthLP: wethBalance,
       })
     })
   }
 
-  getFoodUSDC() {
+  getBalancesFethLP() {
+    var feth = new web3.eth.Contract(contract.fToken.abi, contract.feth.address);
+    var weth = new web3.eth.Contract(contract.erc20Token.abi, contract.weth.address);
+
+    feth.methods.balanceOf(contract.feth.lpAddress).call((err, result) => { 
+      const fethBalance = result*10**-9;
+      this.setState({
+        fethBalanceFethEthLP: fethBalance,
+      })
+    });
+    weth.methods.balanceOf(contract.feth.lpAddress).call((err, result) => { 
+      const wethBalance = result*10**-18;
+      this.setState({
+        ethBalanceFethEthLP: wethBalance,
+      })
+    })
+  }
+
+  getUsdcPriceFood() {
     const food = contract.food.address;
-    const weth = contract.wETH.address;
+    const weth = contract.weth.address;
     const usdc = contract.usdc.address;
 
     router.methods.getAmountsOut(bigNumberString, [food, weth, usdc]).call((err, result) => {
       const foodPriceUSD = result[2] * 10 ** -6;
       this.setState({
-        foodUsdc: foodPriceUSD,
+        foodUsdcPrice: foodPriceUSD,
       })
     })
   }
 
-  getEthUSDC() {
-    const weth = contract.wETH.address;
+  getUsdcPriceEth() {
+    const weth = contract.weth.address;
     const usdc = contract.usdc.address;
 
     router.methods.getAmountsOut(bigNumberString, [weth, usdc]).call((err, result) => {
@@ -190,36 +252,20 @@ class App extends Component {
     })
   }
 
-  getFethUSDC() {
-    const feth = contract.fETH.address;
-    const weth = contract.wETH.address;
-    const usdc = contract.usdc.address;
-
-    router.methods.getAmountsOut(bigNumberString, [feth, weth, usdc]).call((err, result) => {
-      const fethPriceUSD = result[1]*10**-18;
-      console.log(fethPriceUSD)
-    })
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState.page !== this.state.page) {
-        this.changePage(this.state.page);
-        this.detectMobile();
-    }
-  }
-
   componentDidMount() {
-    this.getRebase();
     this.detectMobile();
-    this.getFoodCirculating();
-    this.getFusdcPricePeg();
-    this.getFethPricePeg();
-    this.getFoodEthPrice();
-    this.getBalanceEthRewards();
-    this.getBalanceFethLP();
-    this.getFoodUSDC();
-    this.getEthUSDC();
-  //  this.getFethUSDC();
+    this.getRebase();
+    this.getFoodCirculatingSupply();
+    this.getPricePegFusdc();
+    this.getPricePegFeth();
+    this.getPriceFoodEth();
+    this.getPriceFethEth();
+    this.getUsdcPriceFood();
+    this.getUsdcPriceEth();
+    this.getBalancefTokenRewards();
+    this.getBalanceFoodRewards();
+    this.getBalancesFoodLP();
+    this.getBalancesFethLP();
   //  this.getAccounts();
   }
 
@@ -235,9 +281,17 @@ class App extends Component {
                   mobile={this.state.mobile} 
                   nextRebase={this.state.nextRebase}
                   foodCirculating={this.state.foodCirculating}
+                  foodRewards={this.state.rewardsFood}
+                  foodEthPrice={this.state.foodEthPrice}
+                  foodUsdcPrice={this.state.foodUsdcPrice} 
+                  foodBalanceFoodEthLP={this.state.foodBalanceFoodEthLP}
+                  ethBalanceFoodEthLP={this.state.ethBalanceFoodEthLP}
                   fusdcPeg={this.state.fusdcPeg}
                   fethPeg={this.state.fethPeg}
-                  foodEthPrice={this.state.foodEthPrice} />
+                  rewardsFeth={this.state.rewardsFeth}
+                  fethBalanceFethEthLP={this.state.fethBalanceFethEthLP}
+                  ethBalanceFethEthLP={this.state.ethBalanceFethEthLP}
+                  fethBalanceLPinEth={this.state.fethBalanceLPinEth} />
       case 'team':
         return <Team 
                   onClick={this.changePage} 
@@ -264,11 +318,24 @@ class App extends Component {
 
 export default App;
 
+
 /*
-router.methods.getAmountsOut(bigNumberString,[food,weth]).call((err, result) => {
-  const foodEthPrice = result[1] * 10 ** -18; 
-  this.setState({
-    foodEthPrice: foodEthPrice
+getBalancesFethLP() {
+  var feth = new web3.eth.Contract(contract.fToken.abi, contract.feth.address);
+  var weth = new web3.eth.Contract(contract.food.abi, contract.weth.address);
+
+  food.methods.balanceOf(contract.feth.lpAddress).call((err, result) => { 
+    const fethBalance = result*10**-9;
+    this.setState({
+      fethBalanceLP: fethBalance,
+    })
+  });
+
+  weth.methods.balanceOf(contract.feth.lpAddress).call((err, result) => { 
+    const wethBalance = result*10**-18;
+    this.setState({
+      wethBalanceLP: wethBalance,
+    })
   })
-})
+}
 */
