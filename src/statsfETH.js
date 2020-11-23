@@ -11,10 +11,8 @@ export default class FethStats extends Component {
         super(props);
         this.state = {
             token: tokenData[2],
-            fethPeg: this.props.fethPeg,
             foodEthPrice: this.props.foodEthPrice,
             rewardsFeth: this.props.rewardsFeth,
-            fethBalanceFethEthLP: this.props.fethBalanceFethEthLP,
             ethBalanceFethEthLP: this.props.ethBalanceFethEthLP,
             fethBalanceLPinEth: this.props.fethBalanceLPinEth,
             showBuyLink: false,
@@ -41,11 +39,11 @@ export default class FethStats extends Component {
     }
 
     getFethAPY() {
-        const rewards = (this.state.rewardsFeth + 130) * 0.7; // 629 + 130 = 759 FOOD
-        const price = this.state.foodEthPrice; // 0.0220735 ETH
-        const supply = this.state.fethBalanceLPinEth + this.state.ethBalanceFethEthLP; // 15.23551897 + 15.2355219 = 30.4710409291
+        const rewards = this.state.rewardsFeth; // 806.49 FOOD
+        const price = this.state.foodEthPrice; // 0.01988658 ETH
+        const supply = this.state.fethBalanceLPinEth + this.state.ethBalanceFethEthLP; // 17.1003497736 ETH
 
-        const weeklyYield = rewards * price / supply / 10;
+        const weeklyYield = rewards * price / supply; // 16.0383279042 / 17.1003497736 = 0.9378947283
         const yearlyYield = (((1+weeklyYield)**52) - 1) * 100;
         
         this.setState({
@@ -58,7 +56,6 @@ export default class FethStats extends Component {
     }
     
     render() {
-        const fethPeg = this.state.fethPeg.toFixed(8);
         const fethRewards = this.state.rewardsFeth.toFixed(2);
 
         return(
@@ -81,9 +78,12 @@ export default class FethStats extends Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <StatBox text={this.state.token.statbox[0].heading} stat={fethPeg + " ETH"} />
+                    <StatBox text={this.state.token.statbox[0].heading} stat={this.state.foodEthPrice + " ETH"} />
                     <StatBox text={this.state.token.statbox[1].heading} stat={this.state.fethAPY + " %"} />
                     <StatBox text={this.state.token.statbox[2].heading} stat={fethRewards + " FOOD"} />
+                    <StatBox text={this.state.token.statbox[3].heading} stat={this.state.token.statbox[3].stat} />
+                    <StatBox text={this.state.token.statbox[4].heading} stat={this.state.token.statbox[4].stat} />
+                    <StatBox text={this.state.token.statbox[5].heading} stat={this.state.token.statbox[5].stat} />
                 </div>
             </div>
         )

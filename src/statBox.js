@@ -25,11 +25,11 @@ export default class StatBox extends Component {
 
 
 /*
-<div className="container">
-    <div className="row justify-content-center">                
-        {this.props.stat2 ? (<h4>{this.props.stat2 + " USD"}</h4>) : null }
-    </div>
-
+<div className="statbox shadow-lg p-3 mb-5 bg-black">
+    <h3 className="">
+        <b>{this.props.text}</b>
+    </h3>
+    
     <div className="row justify-content-center">                
         <h4 className="statbox-stat">{this.props.stat}</h4>
     </div>

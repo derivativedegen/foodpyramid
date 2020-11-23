@@ -82,7 +82,10 @@ export default class FoodStats extends Component {
                     <StatBox text={this.state.token.statbox[1].heading} stat={'$' + foodUsdcPrice} />
                     <StatBox text={this.state.token.statbox[2].heading} stat={this.state.foodAPY + ' %'} />
                     <StatBox text={this.state.token.statbox[3].heading} stat={foodRewards + ' ETH'} />
+                    <StatBox text={this.state.token.statbox[7].heading} stat={this.state.token.statbox[7].stat} />
+                    <StatBox text={this.state.token.statbox[6].heading} stat={this.state.token.statbox[6].stat} />
                     <StatBox text={this.state.token.statbox[4].heading} stat={foodCirculating + ' / 100,000'} />
+                    <StatBox text={this.state.token.statbox[5].heading} stat={this.state.token.statbox[5].stat} />
                 </div>
             </div>
         )

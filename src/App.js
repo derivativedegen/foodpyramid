@@ -8,7 +8,6 @@ import Web3 from 'web3';
 import './App.css';
 import './Stars.css';
 import { contract, wallets, bigNumberString } from './chainData';
-import decimalTo from './functions/utilities';
 //const web3 = new Web3("HTTP://127.0.0.1:7545");
 //const web3 = new Web3(Web3.givenProvider || "HTTP://127.0.0.1:7545");
 
@@ -29,11 +28,11 @@ class App extends Component {
       foodEthPrice: 0,
       foodBalanceFoodEthLP: 0,
       ethBalanceFoodEthLP: 0,
-      fusdcPeg: 0,
-      fethPeg: 0,
       fethBalanceLPinEth: 0,
-      fethBalanceFethEthLP: 0,
+    //  fethBalanceFethEthLP: 0,
       ethBalanceFethEthLP: 0,
+      fusdcBalanceFusdcUsdcLP: 0,
+      usdcBalanceFusdcUsdcLP: 0,
       rewardsFeth: 0,
       rewardsFood: 0,
       rewardsFusdc: 0,
@@ -134,9 +133,8 @@ class App extends Component {
     const foodAddress = contract.food.address;
     const weth = contract.weth.address;
     const uniRouter = new web3.eth.Contract(uniswapAbi, uniswapAddress);
-    const bigNumber = '1000000000000000000';
 
-    uniRouter.methods.getAmountsOut(bigNumber,[foodAddress, weth]).call(((err, result) => { 
+    uniRouter.methods.getAmountsOut(bigNumberString,[foodAddress, weth]).call(((err, result) => { 
       const foodEthPrice = result[1] * 10 ** -18;
       const foodEthRounded = parseFloat(foodEthPrice.toFixed(8));
       this.setState({
@@ -151,9 +149,8 @@ class App extends Component {
     const fethAddress = contract.feth.address;
     const weth = contract.weth.address;
     const uniRouter = new web3.eth.Contract(uniswapAbi, uniswapAddress);
-    const bigNumber = '1000000000000000000';
 
-    uniRouter.methods.getAmountsOut(bigNumber,[fethAddress, weth]).call(((err, result) => { 
+    uniRouter.methods.getAmountsOut(bigNumberString,[fethAddress, weth]).call(((err, result) => { 
       const fethEthPrice = result[1] * 10 ** -18;
       const fethEthRounded = parseFloat(fethEthPrice.toFixed(8));
       this.setState({
@@ -213,16 +210,34 @@ class App extends Component {
     var feth = new web3.eth.Contract(contract.fToken.abi, contract.feth.address);
     var weth = new web3.eth.Contract(contract.erc20Token.abi, contract.weth.address);
 
-    feth.methods.balanceOf(contract.feth.lpAddress).call((err, result) => { 
+    /*feth.methods.balanceOf(contract.feth.lpAddress).call((err, result) => { 
       const fethBalance = result*10**-9;
       this.setState({
         fethBalanceFethEthLP: fethBalance,
       })
-    });
+    });*/
     weth.methods.balanceOf(contract.feth.lpAddress).call((err, result) => { 
       const wethBalance = result*10**-18;
       this.setState({
         ethBalanceFethEthLP: wethBalance,
+      })
+    })
+  }
+
+  getBalancesFusdcLP() {
+    var fusdc = new web3.eth.Contract(contract.fToken.abi, contract.fusdc.address);
+    var usdc = new web3.eth.Contract(contract.erc20Token.abi, contract.usdc.address);
+
+    fusdc.methods.balanceOf(contract.fusdc.lpAddress).call((err, result) => { 
+      const fusdcBalance = result*10**-9;
+      this.setState({
+        fusdcBalanceFusdcUsdcLP: fusdcBalance,
+      })
+    });
+    usdc.methods.balanceOf(contract.fusdc.lpAddress).call((err, result) => { 
+      const usdcBalance = result*10**-6;
+      this.setState({
+        usdcBalanceFusdcUsdcLP: usdcBalance,
       })
     })
   }
@@ -256,8 +271,6 @@ class App extends Component {
     this.detectMobile();
     this.getRebase();
     this.getFoodCirculatingSupply();
-    this.getPricePegFusdc();
-    this.getPricePegFeth();
     this.getPriceFoodEth();
     this.getPriceFethEth();
     this.getUsdcPriceFood();
@@ -266,6 +279,9 @@ class App extends Component {
     this.getBalanceFoodRewards();
     this.getBalancesFoodLP();
     this.getBalancesFethLP();
+    this.getBalancesFusdcLP();
+  //  this.getPricePegFusdc();
+  //  this.getPricePegFeth();
   //  this.getAccounts();
   }
 
@@ -286,12 +302,12 @@ class App extends Component {
                   foodUsdcPrice={this.state.foodUsdcPrice} 
                   foodBalanceFoodEthLP={this.state.foodBalanceFoodEthLP}
                   ethBalanceFoodEthLP={this.state.ethBalanceFoodEthLP}
-                  fusdcPeg={this.state.fusdcPeg}
-                  fethPeg={this.state.fethPeg}
                   rewardsFeth={this.state.rewardsFeth}
-                  fethBalanceFethEthLP={this.state.fethBalanceFethEthLP}
+                  rewardsFusdc={this.state.rewardsFusdc}
                   ethBalanceFethEthLP={this.state.ethBalanceFethEthLP}
-                  fethBalanceLPinEth={this.state.fethBalanceLPinEth} />
+                  fethBalanceLPinEth={this.state.fethBalanceLPinEth}
+                  fusdcBalanceFusdcUsdcLP={this.state.fusdcBalanceFusdcUsdcLP}
+                  usdcBalanceFusdcUsdcLP={this.state.usdcBalanceFusdcUsdcLP} />
       case 'team':
         return <Team 
                   onClick={this.changePage} 
@@ -317,25 +333,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-/*
-getBalancesFethLP() {
-  var feth = new web3.eth.Contract(contract.fToken.abi, contract.feth.address);
-  var weth = new web3.eth.Contract(contract.food.abi, contract.weth.address);
-
-  food.methods.balanceOf(contract.feth.lpAddress).call((err, result) => { 
-    const fethBalance = result*10**-9;
-    this.setState({
-      fethBalanceLP: fethBalance,
-    })
-  });
-
-  weth.methods.balanceOf(contract.feth.lpAddress).call((err, result) => { 
-    const wethBalance = result*10**-18;
-    this.setState({
-      wethBalanceLP: wethBalance,
-    })
-  })
-}
-*/

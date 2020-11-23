@@ -134,11 +134,16 @@ export const tokenData = [
                 heading: 'Circulating Supply',
             },
             {
-                heading: 'LP Liquidity'
+                heading: 'Total Rewards',
+                stat: '19.20875 ETH', // 4,795.84 USDC First Dist / $577 Current ETH PRice
             },
             {
-                heading: 'Rewards Paid',
-                stat: '4,795.84 USDC',
+                heading: 'Latest Rewards',
+                stat: '10.90 ETH',
+            },
+            {
+                heading: 'Latest APY',
+                stat: '11,773.87 %',
             },
         ]
     },
@@ -152,8 +157,22 @@ export const tokenData = [
                 heading: 'Price Peg',
             },
             {
-                heading: 'Rewards Paid',
-                stat: '2,534.06 USDC',
+                heading: 'Total Rewards',
+                stat: '1,064.36 FOOD', // 7,535.85 USDC First Dist / $11.57 Current FOOD
+            },
+            {
+                heading: 'Latest Rewards',
+                stat: '413.03 FOOD',
+            },
+            {
+                heading: 'Latest APY',
+                stat: '870.28 %',
+            },
+            {
+                heading: 'Current Rewards',
+            },
+            {
+                heading: 'Current APY'
             },
         ]
     },
@@ -172,6 +191,18 @@ export const tokenData = [
             },
             {
                 heading: 'Current Rewards',
+            },
+            {
+                heading: 'Total Rewards',
+                stat: '806.49 FOOD',
+            },
+            {
+                heading: `Latest APY`,
+                stat: '10,481 %',
+            },
+            {
+                heading: `Latest Rewards`,
+                stat: '806.49 FOOD',
             },
         ]
     }

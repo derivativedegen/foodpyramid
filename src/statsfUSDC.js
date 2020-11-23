@@ -10,12 +10,29 @@ export default class FusdcStats extends Component {
         super(props);
         this.state = {
             token: tokenData[1],
-            fusdcPeg: this.props.fusdcPeg,
+            foodUsdcPrice: this.props.foodUsdcPrice,
+            rewardsFusdc: this.props.rewardsFusdc,
+            fusdcBalanceFusdcUsdcLP: this.props.fusdcBalanceFusdcUsdcLP,
+            usdcBalanceFusdcUsdcLP: this.props.usdcBalanceFusdcUsdcLP,
             showBuyLink: false,
             showChartLink: false,
+            fusdcAPY: 0,
         }
         this.toggleBuyLink = this.toggleBuyLink.bind(this);
         this.toggleChartLink = this.toggleChartLink.bind(this);
+    }
+
+    getFusdcAPY() {
+        const rewards = this.state.rewardsFusdc;
+        const price = this.state.foodUsdcPrice; 
+        const supply = this.state.usdcBalanceFusdcUsdcLP * 2; 
+
+        const weeklyYield = rewards * price / supply;
+        const yearlyYield = (((1+weeklyYield)**52) - 1) * 100;
+        
+        this.setState({
+            fusdcAPY: yearlyYield.toFixed(2)
+        })
     }
 
     toggleBuyLink(e) {
@@ -55,8 +72,12 @@ export default class FusdcStats extends Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <StatBox text={this.state.token.statbox[0].heading} stat={this.state.fusdcPeg.toFixed(2)} />
+                    <StatBox text={this.state.token.statbox[0].heading} stat={'$' + this.state.foodUsdcPrice.toFixed(2)} />
+                    <StatBox text={this.state.token.statbox[5].heading} stat={this.state.fusdcAPY + ' %'} />
+                    <StatBox text={this.state.token.statbox[4].heading} stat={this.state.rewardsFusdc + ' ETH'} />
                     <StatBox text={this.state.token.statbox[1].heading} stat={this.state.token.statbox[1].stat} />
+                    <StatBox text={this.state.token.statbox[3].heading} stat={this.state.token.statbox[3].stat} />
+                    <StatBox text={this.state.token.statbox[2].heading} stat={this.state.token.statbox[2].stat} />
                 </div>
             </div>
         )
