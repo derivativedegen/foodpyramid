@@ -138,11 +138,11 @@ export const tokenData = [
                 stat: '19.20875 ETH', // 4,795.84 USDC First Dist / $577 Current ETH PRice
             },
             {
-                heading: 'Latest Rewards',
+                heading: 'Last Reward',
                 stat: '10.90 ETH',
             },
             {
-                heading: 'Latest APY',
+                heading: 'Last Reward APY',
                 stat: '11,773.87 %',
             },
         ]
@@ -161,11 +161,11 @@ export const tokenData = [
                 stat: '1,064.36 FOOD', // 7,535.85 USDC First Dist / $11.57 Current FOOD
             },
             {
-                heading: 'Latest Rewards',
+                heading: 'Last Reward',
                 stat: '413.03 FOOD',
             },
             {
-                heading: 'Latest APY',
+                heading: 'Last Reward APY',
                 stat: '870.28 %',
             },
             {
@@ -197,11 +197,11 @@ export const tokenData = [
                 stat: '806.49 FOOD',
             },
             {
-                heading: `Latest APY`,
+                heading: `Last Reward APY`,
                 stat: '10,481 %',
             },
             {
-                heading: `Latest Rewards`,
+                heading: `Last Reward`,
                 stat: '806.49 FOOD',
             },
         ]
