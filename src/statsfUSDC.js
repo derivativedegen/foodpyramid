@@ -28,6 +28,8 @@ export default class FusdcStats extends Component {
         const supply = this.state.usdcBalanceFusdcUsdcLP * 2; 
 
         const weeklyYield = rewards * price / supply;
+
+        console.log(weeklyYield);
         const yearlyYield = (((1+weeklyYield)**52) - 1) * 100;
         
         this.setState({
@@ -49,6 +51,10 @@ export default class FusdcStats extends Component {
             showBuyLink: false,
             showChartLink: toggle
         })
+    }
+
+    componentDidMount() {
+        this.getFusdcAPY();
     }
     
     render() {
@@ -74,7 +80,7 @@ export default class FusdcStats extends Component {
                 <div className="row justify-content-center">
                     <StatBox text={this.state.token.statbox[0].heading} stat={'$' + this.state.foodUsdcPrice.toFixed(2)} />
                     <StatBox text={this.state.token.statbox[5].heading} stat={this.state.fusdcAPY + ' %'} />
-                    <StatBox text={this.state.token.statbox[4].heading} stat={this.state.rewardsFusdc + ' ETH'} />
+                    <StatBox text={this.state.token.statbox[4].heading} stat={this.state.rewardsFusdc.toFixed(2) + ' USDC'} />
                     <StatBox text={this.state.token.statbox[1].heading} stat={this.state.token.statbox[1].stat} />
                     <StatBox text={this.state.token.statbox[3].heading} stat={this.state.token.statbox[3].stat} />
                     <StatBox text={this.state.token.statbox[2].heading} stat={this.state.token.statbox[2].stat} />

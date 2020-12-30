@@ -159,22 +159,28 @@ class App extends Component {
     }))
   }
 
-  getBalancefTokenRewards() {
+  getBalanceFethRewards() {
     const foodAbi = contract.erc20Token.abi;
     const foodAddress = contract.food.address;
     const foodPyramid = new web3.eth.Contract(foodAbi, foodAddress);
-
-    foodPyramid.methods.balanceOf(contract.fusdc.rewards).call((err, result) => {
-      let balance = result * 10 ** -18;
-      this.setState({
-        rewardsFusdc: balance,
-      })
-    })
 
     foodPyramid.methods.balanceOf(contract.feth.rewards).call((err, result) => {
       let balance = result * 10 ** -18;
       this.setState({
         rewardsFeth: balance,
+      })
+    })
+  }
+
+  getBalanceFusdcRewards() {
+    const usdcAbi = contract.erc20Token.abi;
+    const usdcAddress = contract.usdc.address;
+    const usdc = new web3.eth.Contract(usdcAbi, usdcAddress)
+
+    usdc.methods.balanceOf(contract.fusdc.rewards).call((err, result) => {
+      let balance = result * 10 ** -6
+      this.setState({
+        rewardsFusdc: balance,
       })
     })
   }
@@ -275,7 +281,8 @@ class App extends Component {
     this.getPriceFethEth();
     this.getUsdcPriceFood();
     this.getUsdcPriceEth();
-    this.getBalancefTokenRewards();
+    this.getBalanceFethRewards();
+    this.getBalanceFusdcRewards();
     this.getBalanceFoodRewards();
     this.getBalancesFoodLP();
     this.getBalancesFethLP();
